@@ -1,1 +1,1 @@
-# ssg-recipe-project
+# 🍱 Recipe Book
