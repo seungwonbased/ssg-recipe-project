@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from flaskext.markdown import Markdown
+# from kamis import kamis_api
 
 
 import config
@@ -32,7 +33,7 @@ def create_app():
 
     # from . import models
 
-    # 블루프린트
+    # 블루 프린트
     from .views import main_views, post_views, comment_views, auth_views
     app.register_blueprint(main_views.bp)
     app.register_blueprint(post_views.bp)

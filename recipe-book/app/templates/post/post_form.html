@@ -34,7 +34,97 @@
 {{ form.content.data or '' }}</textarea
       >
     </div>
+    <h5>재료를 등록해주세요</h5>
+    <div class="mb-3" id="ingre">
+      품목 :
+      <select>
+        <option value="">---------- 선택하세요 ----------</option>
+      </select>
+      수량 :
+      <input
+        type="text"
+        name="quantity"
+        id="quantity"
+        value="{{ food.quantity.data }}"
+      />
+    </div>
+    <div class="mb-3" id="ingre">
+      품목 :
+      <select>
+        <option value="">---------- 선택하세요 ----------</option>
+      </select>
+      수량 :
+      <input
+        type="text"
+        name="quantity"
+        id="quantity"
+        value="{{ food.quantity.data }}"
+      />
+    </div>
+    <div class="mb-3" id="ingre">
+      품목 :
+      <select>
+        <option value="">---------- 선택하세요 ----------</option>
+      </select>
+      수량 :
+      <input
+        type="text"
+        name="quantity"
+        id="quantity"
+        value="{{ food.quantity.data }}"
+      />
+    </div>
+    <div class="mb-3" id="ingre">
+      품목 :
+      <select>
+        <option value="">---------- 선택하세요 ----------</option>
+      </select>
+      수량 :
+      <input
+        type="text"
+        name="quantity"
+        id="quantity"
+        value="{{ food.quantity.data }}"
+      />
+    </div>
+    <div class="mb-3" id="ingre">
+      품목 :
+      <select>
+        <option value="">---------- 선택하세요 ----------</option>
+      </select>
+      수량 :
+      <input
+        type="text"
+        name="quantity"
+        id="quantity"
+        value="{{ food.quantity.data }}"
+      />
+    </div>
+    <div class="mb-3" id="ingre">
+      품목 :
+      <select>
+        <option value="">---------- 선택하세요 ----------</option>
+      </select>
+      수량 :
+      <input
+        type="text"
+        name="quantity"
+        id="quantity"
+        value="{{ food.quantity.data }}"
+      />
+    </div>
+    <div class="mb-3" id="field"></div>
     <button type="submit" class="btn btn-primary">저장</button>
   </form>
 </div>
+{% endblock %} {% block script %}
+<script type="text/javascript">
+  function add_div() {
+    var div = document.createElement("div");
+
+    div.innerHTML = document.getElementById("ingre").innerHTML;
+
+    document.getElementById("field").appendChild(div);
+  }
+</script>
 {% endblock %}

@@ -2,12 +2,14 @@ from datetime import datetime
 from flask import Blueprint, render_template, request, url_for, g, flash
 from werkzeug.utils import redirect
 from app import db
-from app.models import Post, Comment, User
-from app.forms import PostForm, CommentForm
+from app.models import Post, Comment, User, Food
+from app.forms import PostForm, CommentForm, FoodForm
 from app.views.auth_views import login_required
+# from app.kamis import kamis_api
 
 
 bp = Blueprint('post', __name__, url_prefix='/post')
+# food_data = kamis_api.get_food()
 
 
 @bp.route('/list/')
@@ -20,15 +22,15 @@ def _list():
         sub_query = db.session.query(Comment.post_id, Comment.content, User.username) \
             .join(User, Comment.user_id == User.id).subquery()
         post_list = post_list \
-            .join(User).outerjoin(sub_query, sub_query.c.post_id == Post.id).filter(Post.subject.ilike(search) |  # 질문제목
-                                                                                    # 질문내용
+            .join(User).outerjoin(sub_query, sub_query.c.post_id == Post.id).filter(Post.subject.ilike(search) |  # 질문 제목
+                                                                                    # 질문 내용
                                                                                     Post.content.ilike(search) |
-                                                                                    # 질문작성자
+                                                                                    # 질문 작성자
                                                                                     User.username.ilike(search) |
-                                                                                    # 답변내용
+                                                                                    # 답변 내용
                                                                                     sub_query.c.content.ilike(search) |
                                                                                     sub_query.c.username.ilike(
-                                                                                        search)  # 답변작성자
+                                                                                        search)  # 답변 작성자
                                                                                     ) \
             .distinct()
     post_list = post_list.paginate(page=page, per_page=10)
@@ -46,22 +48,30 @@ def detail(post_id):
 @login_required
 def create():
     form = PostForm()
+    food = FoodForm()
 
     if request.method == 'POST' and form.validate_on_submit():
         post = Post(subject=form.subject.data,
                     content=form.content.data, create_date=datetime.now(), user=g.user)
 
+        food_quantity = food.quantity
+
+        print(food_quantity)
+
+        post.price = 10000
+
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.index'))
 
-    return render_template('post/post_form.html', form=form)
+    return render_template('post/post_form.html', form=form, food=food)
 
 
 @bp.route('/modify/<int:post_id>', methods=('GET', 'POST'))
 @login_required
 def modify(post_id):
     post = Post.query.get_or_404(post_id)
+    food = FoodForm()
     if g.user != post.user:
         flash('수정 권한이 없습니다')
         return redirect(url_for('post.detail', post_id=post_id))
@@ -74,7 +84,7 @@ def modify(post_id):
             return redirect(url_for('post.detail', post_id=post_id))
     else:  # GET 요청
         form = PostForm(obj=post)
-    return render_template('post/post_form.html', form=form)
+    return render_template('post/post_form.html', form=form, food=food)
 
 
 @bp.route('/delete/<int:post_id>')

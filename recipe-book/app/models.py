@@ -23,6 +23,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text(), nullable=False)
+    price = db.Column(db.Integer, nullable=True)
     create_date = db.Column(db.DateTime(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.id', ondelete='CASCADE'), nullable=False)
@@ -30,6 +31,9 @@ class Post(db.Model):
     modify_date = db.Column(db.DateTime(), nullable=True)
     liker = db.relationship('User', secondary=post_liker,
                             backref=db.backref('post_liker_set'))
+    food_id = db.Column(db.Integer, db.ForeignKey(
+        'food.id', ondelete='CASCADE'), nullable=True)
+    food = db.relationship('Food', backref=db.backref('post_set'))
 
 
 class Comment(db.Model):
@@ -56,6 +60,8 @@ class User(db.Model):
 
 class Food(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    foodname = db.Column(db.String(150), unique=False, nullable=True)
-    price = db.Column(db.Integer, unique=False, nullable=True)
-    unit = db.Column(db.String(100), unique=False, nullable=True)
+    foodname = db.Column(db.String(150), unique=True, nullable=True)
+    food_price = db.Column(db.Integer, unique=False, nullable=True)
+    food_unit = price = db.Column(db.Integer, unique=False, nullable=True)
+    food_category = db.Column(
+        db.String(150), unique=False, nullable=True)

@@ -27,3 +27,10 @@ class UserLoginForm(FlaskForm):
     username = StringField('사용자 이름', validators=[
                            DataRequired(), Length(min=3, max=25)])
     password = PasswordField('비밀번호', validators=[DataRequired()])
+
+
+class FoodForm(FlaskForm):
+    food_categort = StringField('카테고리')
+    food_name = StringField('품목')
+    food_unit = StringField('단위')
+    quantity = StringField('수량')
