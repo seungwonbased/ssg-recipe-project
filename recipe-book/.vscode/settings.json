@@ -1,0 +1,11 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "python.formatting.provider": "none",
+  "python.linting.pylintArgs": [
+    "--disable=C0111",
+    "--disable=C0114",
+    "--disable=C0115"
+  ]
+}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %}
+<!-- 게시글 등록 -->
+<div class="container">
+  <h5 class="my-3 border-bottom pb-2">레시피 등록</h5>
+  <form method="post" class="my-3">
+    {{ form.csrf_token }}
+    <!-- 오류 표시 Start -->
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for field, errors in form.errors.items() %}
+      <strong>{{ form[field].label }}</strong>
+      <ul>
+        {% for error in errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <!-- 오류 표시 End -->
+    <div class="mb-3">
+      <label for="subject">요리 이름</label>
+      <input
+        type="text"
+        class="form-control"
+        name="subject"
+        id="subject"
+        value="{{ form.subject.data or '' }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="content">레시피</label>
+      <textarea class="form-control" name="content" id="content" rows="10">
+{{ form.content.data or '' }}</textarea
+      >
+    </div>
+    <button type="submit" class="btn btn-primary">저장</button>
+  </form>
+</div>
+{% endblock %}
