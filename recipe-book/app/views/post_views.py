@@ -2,9 +2,10 @@ from datetime import datetime
 from flask import Blueprint, render_template, request, url_for, g, flash
 from werkzeug.utils import redirect
 from app import db
-from app.models import Post, Comment, User, Food
+from app.models import Post, Comment, User, Food, Image
 from app.forms import PostForm, CommentForm, FoodForm
 from app.views.auth_views import login_required
+import math
 # from app.kamis import kamis_api
 
 
@@ -49,21 +50,14 @@ def detail(post_id):
 @login_required
 def create():
     form = PostForm()
-    food = FoodForm()
     foods = db.session.query(Food).all()
+    food = FoodForm()
 
     if request.method == 'POST' and form.validate_on_submit():
         post = Post(subject=form.subject.data,
                     content=form.content.data, create_date=datetime.now(), user=g.user)
 
-        print(food.quantity_1.data, food.quantity_2.data,
-              food.quantity_3.data, food.quantity_4.data)
-
-        print(food.food_name_1.data, food.food_name_2.data,
-              food.food_name_3.data, food.food_name_4.data)
-
-        post.price = 10000
-
+        post.price = calculate(food)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.index'))
@@ -115,4 +109,63 @@ def like(post_id):
     return redirect(url_for('post.detail', post_id=post_id))
 
 
-# def calculate():
+# def upload_file(req):
+#     if 'file' not in req.files:
+#         print("no file part")
+#         return 'No file part'
+#     file = req.files['file']
+
+#     if file.filename == '':
+#         return 'No selected file'
+#     # filename = secure_filename(file.filename)
+
+#     filepath = os.path.join("", filename)
+#     file.save(filepath)
+
+#     new_image = Image(filename=filepath)
+#     db.session.add(new_image)
+#     try:
+#         db.session.commit()
+#     except Exception as e:
+#         print(e)
+#         return "There was an issue uploading your image."
+
+#     return redirect(url_for('post._list'))
+
+
+def calculate(food):
+    food_1 = db.session.query(Food).filter(
+        Food.foodname == food.food_name_1.data).first()
+    food_2 = db.session.query(Food).filter(
+        Food.foodname == food.food_name_2.data).first()
+    food_3 = db.session.query(Food).filter(
+        Food.foodname == food.food_name_3.data).first()
+    food_4 = db.session.query(Food).filter(
+        Food.foodname == food.food_name_4.data).first()
+
+    if food_1.food_price is None:
+        price_1, unit_1, quantity_1 == 0, 1, 0
+    else:
+        price_1, unit_1, quantity_1 = food_1.food_price, food_1.food_unit, food.quantity_1.data
+    if food_2.food_price is None:
+        price_2, unit_2, quantity_2 == 0, 1, 0
+    else:
+        price_2, unit_2, quantity_2 = food_2.food_price, food_2.food_unit, food.quantity_2.data
+    if food_3.food_price is None:
+        price_3, unit_3, quantity_3 == 0, 1, 0
+    else:
+        price_3, unit_3, quantity_3 = food_3.food_price, food_3.food_unit, food.quantity_3.data
+    if food_4.food_price is None:
+        price_4, unit_4, quantity_4 == 0, 1, 0
+    else:
+        price_4, unit_4, quantity_4 = food_4.food_price, food_4.food_unit, food.quantity_4.data
+
+    print(price_1, unit_1, quantity_1)
+    print(price_2, unit_2, quantity_2)
+    print(price_3, unit_3, quantity_3)
+    print(price_4, unit_4, quantity_4)
+
+    price = math.floor(((int(price_1) * int(quantity_1) / int(unit_1)) + (int(price_2) * int(quantity_2) / int(unit_2)) +
+                        (int(price_3) * int(quantity_3) / int(unit_3)) + (int(price_4) * int(quantity_4) / int(unit_4))))
+
+    return price

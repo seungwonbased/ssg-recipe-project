@@ -1,0 +1,7 @@
+.idea
+app.db
+*.pyc
+__pycache__
+migrations
+app/app.sqbpro
+app/__pycache__/

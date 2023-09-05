@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, PasswordField, EmailField
+from wtforms import StringField, TextAreaField, PasswordField, EmailField, SelectField, IntegerField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 
 
@@ -30,10 +30,11 @@ class UserLoginForm(FlaskForm):
 
 
 class FoodForm(FlaskForm):
-    food_name_1 = StringField('품목')
-    food_name_2 = StringField('품목')
-    food_name_3 = StringField('품목')
-    food_name_4 = StringField('품목')
+    # food_name = SelectField('---------- 선택하세요 ----------', choices=[])
+    food_name_1 = SelectField('---------- 선택하세요 ----------', choices=[])
+    food_name_2 = SelectField('---------- 선택하세요 ----------', choices=[])
+    food_name_3 = SelectField('---------- 선택하세요 ----------', choices=[])
+    food_name_4 = SelectField('---------- 선택하세요 ----------', choices=[])
     food_unit = StringField('단위')
     quantity_1 = StringField('수량')
     quantity_2 = StringField('수량')

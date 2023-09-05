@@ -34,6 +34,9 @@ class Post(db.Model):
     food_id = db.Column(db.Integer, db.ForeignKey(
         'food.id', ondelete='CASCADE'), nullable=True)
     food = db.relationship('Food', backref=db.backref('post_set'))
+    # image_id = db.Column(db.Integer, db.ForeignKey(
+    #     'image.id', ondelete='CASCADE'), nullable=True)
+    # image = db.relationship('User', backref=db.backref('post_set'))
 
 
 class Comment(db.Model):
@@ -63,3 +66,9 @@ class Food(db.Model):
     foodname = db.Column(db.String(150), unique=True, nullable=True)
     food_price = db.Column(db.Integer, unique=False, nullable=True)
     food_unit = db.Column(db.Integer, unique=False, nullable=True)
+
+
+class Image(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(150), unique=False, nullable=True)
+    post_id = db.Column(db.Integer, nullable=False)

@@ -2,7 +2,7 @@
 <!-- 게시글 등록 -->
 <div class="container">
   <h5 class="my-3 border-bottom pb-2">레시피 등록</h5>
-  <form method="post" class="my-3">
+  <form method="post" class="my-3" action="/post/create/">
     {{ form.csrf_token }}
     <!-- 오류 표시 Start -->
     {% if form.errors %}
@@ -34,20 +34,18 @@
 {{ form.content.data or '' }}</textarea
       >
     </div>
-    <div class="mb-3">
-      <button type="submit" class="btn btn-sm btn-outline-secondary">
-        사진 업로드
-      </button>
-    </div>
+    <!--- <div class="mb-3">
+      <div class="file">
+        <input id="file" name="file" type="file" accept=".jpg, .jpeg, .png" />
+      </div>
+    </div> --->
     <h5>재료를 등록해주세요</h5>
-    <div class="mb-3" id="ingre">
+    <div class="mb-3" id="food_name_1">
       품목 :
-      <select>
-        <option value="food.food_name_1.data">
-          ---------- 선택하세요 ----------
-        </option>
+      <select name="food_name_1">
+        <option value="food_name_1">---------- 선택하세요 ----------</option>
         {% for f in foods %}
-        <option value="{{ food.food_name_1.data }}">{{ f.foodname }}</option>
+        <option value="{{ f.foodname }}">{{ f.foodname }}</option>
         {% endfor %}
       </select>
       수량 :
@@ -58,14 +56,12 @@
         value="{{ food.quantity_1.data or 0 }}"
       />
     </div>
-    <div class="mb-3" id="ingre">
+    <div class="mb-3" id="food_name_2">
       품목 :
-      <select>
-        <option value="food.food_name_2.data">
-          ---------- 선택하세요 ----------
-        </option>
+      <select name="food_name_2">
+        <option value="food_name_2">---------- 선택하세요 ----------</option>
         {% for f in foods %}
-        <option value="{{ food.food_name_2.data }}">{{ f.foodname }}</option>
+        <option value="{{ f.foodname }}">{{ f.foodname }}</option>
         {% endfor %}
       </select>
       수량 :
@@ -76,14 +72,12 @@
         value="{{ food.quantity_2.data or 0}}"
       />
     </div>
-    <div class="mb-3" id="ingre">
+    <div class="mb-3" id="food_name_3">
       품목 :
-      <select>
-        <option value="food.food_name_3.data">
-          ---------- 선택하세요 ----------
-        </option>
+      <select name="food_name_3">
+        <option value="food_name_3">---------- 선택하세요 ----------</option>
         {% for f in foods %}
-        <option value="{{ food.food_name_3.data }}">{{ f.foodname }}</option>
+        <option value="{{ f.foodname }}">{{ f.foodname }}</option>
         {% endfor %}
       </select>
       수량 :
@@ -94,14 +88,12 @@
         value="{{ food.quantity_3.data or 0 }}"
       />
     </div>
-    <div class="mb-3" id="ingre">
+    <div class="mb-3" id="food_name_4">
       품목 :
-      <select>
-        <option value="{{ food.food_name_4.data}}">
-          ---------- 선택하세요 ----------
-        </option>
+      <select name="food_name_4">
+        <option value="food_name_4">---------- 선택하세요 ----------</option>
         {% for f in foods %}
-        <option value="{{ food.food_name_4.data }}">{{ f.foodname }}</option>
+        <option value="{{ f.foodname }}">{{ f.foodname }}</option>
         {% endfor %}
       </select>
       수량 :
