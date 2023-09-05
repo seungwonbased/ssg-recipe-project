@@ -6,3 +6,4 @@ migrations
 app/app.sqbpro
 app/__pycache__/
 .vscode/
+logs
