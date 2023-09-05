@@ -52,7 +52,7 @@
   </div>
   <!-- 댓글 목록 -->
   <h5 class="border-bottom my-3 py-2">
-    {{ post.comment_set|length }}개의 댓글이 있습니다.
+    {{ post.comment_set|length }}개의 댓글이 있습니다
   </h5>
   {% for comment in post.comment_set %}
   <a id="comment_{{ comment.id }}"></a>
@@ -136,7 +136,11 @@
         rows="10"
       ></textarea>
     </div>
-    <input type="submit" value="댓글 등록" class="btn btn-primary" />
+    <input
+      type="submit"
+      value="댓글 등록"
+      class="btn btn-sm btn-outline-secondary"
+    />
   </form>
 </div>
 {% endblock %} {% block script %}

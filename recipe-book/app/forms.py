@@ -30,7 +30,12 @@ class UserLoginForm(FlaskForm):
 
 
 class FoodForm(FlaskForm):
-    food_categort = StringField('카테고리')
-    food_name = StringField('품목')
+    food_name_1 = StringField('품목')
+    food_name_2 = StringField('품목')
+    food_name_3 = StringField('품목')
+    food_name_4 = StringField('품목')
     food_unit = StringField('단위')
-    quantity = StringField('수량')
+    quantity_1 = StringField('수량')
+    quantity_2 = StringField('수량')
+    quantity_3 = StringField('수량')
+    quantity_4 = StringField('수량')

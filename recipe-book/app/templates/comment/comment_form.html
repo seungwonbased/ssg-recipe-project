@@ -1,11 +1,11 @@
 <!-- 답변 수정 -->
 {% extends 'base.html' %} {% block content %}
 <div class="container">
-  <h5 class="my-3 border-bottom pb-2">답변 수정</h5>
+  <h5 class="my-3 border-bottom pb-2">댓글 수정</h5>
   <form method="post">
     {{ form.csrf_token }} {% include "form_errors.html" %}
     <div class="mb-3">
-      <label for="content">답변내용</label>
+      <label for="content">댓글 내용</label>
       <textarea class="form-control" name="content" id="content" rows="10">
 {{ form.content.data or '' }}</textarea
       >

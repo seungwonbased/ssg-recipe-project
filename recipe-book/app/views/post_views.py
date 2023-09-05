@@ -39,6 +39,7 @@ def _list():
 
 @bp.route('/detail/<int:post_id>/')
 def detail(post_id):
+
     form = CommentForm()
     post = Post.query.get_or_404(post_id)
     return render_template('post/post_detail.html', post=post, form=form)
@@ -49,14 +50,17 @@ def detail(post_id):
 def create():
     form = PostForm()
     food = FoodForm()
+    foods = db.session.query(Food).all()
 
     if request.method == 'POST' and form.validate_on_submit():
         post = Post(subject=form.subject.data,
                     content=form.content.data, create_date=datetime.now(), user=g.user)
 
-        food_quantity = food.quantity
+        print(food.quantity_1.data, food.quantity_2.data,
+              food.quantity_3.data, food.quantity_4.data)
 
-        print(food_quantity)
+        print(food.food_name_1.data, food.food_name_2.data,
+              food.food_name_3.data, food.food_name_4.data)
 
         post.price = 10000
 
@@ -64,7 +68,7 @@ def create():
         db.session.commit()
         return redirect(url_for('main.index'))
 
-    return render_template('post/post_form.html', form=form, food=food)
+    return render_template('post/post_form.html', form=form, food=food, foods=foods)
 
 
 @bp.route('/modify/<int:post_id>', methods=('GET', 'POST'))
@@ -109,3 +113,6 @@ def like(post_id):
         _post.liker.append(g.user)
         db.session.commit()
     return redirect(url_for('post.detail', post_id=post_id))
+
+
+# def calculate():

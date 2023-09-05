@@ -62,6 +62,4 @@ class Food(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     foodname = db.Column(db.String(150), unique=True, nullable=True)
     food_price = db.Column(db.Integer, unique=False, nullable=True)
-    food_unit = price = db.Column(db.Integer, unique=False, nullable=True)
-    food_category = db.Column(
-        db.String(150), unique=False, nullable=True)
+    food_unit = db.Column(db.Integer, unique=False, nullable=True)
