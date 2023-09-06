@@ -50,11 +50,11 @@ h4 {
   font-size: 52px;
   padding: 10px;
   text-align: center;
-  font-family: "Titan One", cursive;
+  font-family: "yg-jalnan";
 }
 
 .navbar-brand {
-  font-family: "Titan One", cursive;
+  font-family: "yg-jalnan";
   color: #ff973c;
   font-size: 24px;
 }
@@ -70,7 +70,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #676767;
-  border-top: 55px solid #ffffff; /*넓이 스타일 색상*/
+  border-top: 30px solid #ffffff; /*넓이 스타일 색상*/
 }
 
 #campaign {
@@ -79,8 +79,8 @@ body {
 }
 
 #lit {
-  font-family: "Bagel Fat One", cursive;
-  font-size: 4em;
+  font-family: "yg-jalnan";
+  font-size: 3em;
   color: #ff7028;
   text-align: center;
   text-decoration: none;
@@ -102,11 +102,21 @@ body {
   padding: 20px 0 15px;
   margin-top: 50px;
   background-color: #ff7028;
-  font-size: 0.9em; /*브라우저 창 크기에 상관없이 폰트크기가 변함, px은 고정된값*/
+  font-size: 0.9em;
   text-align: center;
   font-style: normal;
   color: #fff;
   clear: both;
+}
+
+#footerlogo {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 2.5em;
+  padding-top: 15px;
+  text-align: center;
+  font-family: "yg-jalnan";
 }
 
 #logo,
