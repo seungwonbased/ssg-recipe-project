@@ -1,0 +1,135 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Nanum Gothic";
+  src: url("./font/NanumGothicCoding.ttf");
+}
+@font-face {
+  font-family: "Yanone";
+  src: url("./font/YanoneKaffeesatz-Regular.ttf");
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body,
+div,
+p,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4 {
+  padding: 5;
+  margin: 5;
+}
+
+.title > a {
+  text-decoration: none;
+  color: #ff7028;
+  font-size: 52px;
+  padding: 10px;
+  text-align: center;
+  font-family: "Titan One", cursive;
+}
+
+.navbar-brand {
+  font-family: "Titan One", cursive;
+  color: #ff973c;
+  font-size: 24px;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+body {
+  font-family: "Nanum Gothic", "맑은 고딕", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #676767;
+  border-top: 10px solid #ff973c; /*넓이 스타일 색상*/
+}
+
+#campaign {
+  display: block;
+  margin: auto;
+}
+
+#lit {
+  font-family: "Bagel Fat One", cursive;
+  font-size: 4em;
+  color: #ff7028;
+  text-align: center;
+  text-decoration: none;
+  padding: 20;
+  margin: 20;
+  clear: both;
+  margin-top: 20px;
+}
+#wrap {
+  width: 960px;
+  margin: 0 auto;
+}
+#header {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#footer {
+  padding: 20px 0 15px;
+  margin-top: 50px;
+  background-color: #ff973c;
+  font-size: 0.9em; /*브라우저 창 크기에 상관없이 폰트크기가 변함, px은 고정된값*/
+  text-align: center;
+  font-style: normal;
+  color: #fff;
+  clear: both;
+}
+
+#logo,
+#logo a {
+  float: left;
+}
+
+.img {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.container {
+  display: block;
+  width: 1000px;
+  height: auto;
+  max-width: 100%; /* 창사이즈가 1000px보다 작아지면 100%처리 */
+  margin: 0 auto;
+  clear: both;
+  min-height: 500px;
+}
+
+#wrap {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.container img {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+thead tr {
+  background-color: #ff7028;
+  color: #ffffff;
+}
+
+label {
+  padding: 10;
+  margin: 10;
+}
