@@ -60,7 +60,7 @@ def create():
         post.price = calculate(food)
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('post._list'))
 
     return render_template('post/post_form.html', form=form, food=food, foods=foods)
 
@@ -143,19 +143,19 @@ def calculate(food):
     food_4 = db.session.query(Food).filter(
         Food.foodname == food.food_name_4.data).first()
 
-    if food_1.food_price is None:
+    if food_1 is None:
         price_1, unit_1, quantity_1 = 0, 1, 0
     else:
         price_1, unit_1, quantity_1 = food_1.food_price, food_1.food_unit, food.quantity_1.data
-    if food_2.food_price is None:
+    if food_2 is None:
         price_2, unit_2, quantity_2 = 0, 1, 0
     else:
         price_2, unit_2, quantity_2 = food_2.food_price, food_2.food_unit, food.quantity_2.data
-    if food_3.food_price is None:
+    if food_3 is None:
         price_3, unit_3, quantity_3 = 0, 1, 0
     else:
         price_3, unit_3, quantity_3 = food_3.food_price, food_3.food_unit, food.quantity_3.data
-    if food_4.food_price is None:
+    if food_4 is None:
         price_4, unit_4, quantity_4 = 0, 1, 0
     else:
         price_4, unit_4, quantity_4 = food_4.food_price, food_4.food_unit, food.quantity_4.data

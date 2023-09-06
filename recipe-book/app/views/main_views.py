@@ -1,4 +1,4 @@
-from flask import Blueprint, url_for, current_app
+from flask import Blueprint, url_for, current_app, render_template
 from werkzeug.utils import redirect
 
 bp = Blueprint('main', __name__, url_prefix='/')
@@ -13,4 +13,5 @@ def hello_pybo():
 def index():
     current_app.logger.info("Logging level: INFO")
 
-    return redirect(url_for('post._list'))
+    return render_template('index.html')
+    # return redirect(url_for('post._list'))

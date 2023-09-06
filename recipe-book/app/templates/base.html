@@ -12,12 +12,12 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='bootstrap.min.css') }}"
     />
-    <!-- pybo CSS -->
+    <!-- CSS -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
-    <!--폰트-->
+    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,12 +30,12 @@
     <div id="wrap">
       <div id="header">
         <center>
-          <h1 class="title"><a href="/hello">Hello RECIPE</a></h1>
+          <h1 class="title"><a href="/">Hello RECIPE</a></h1>
         </center>
         {% include "navbar.html" %}
       </div>
     </div>
-    <!-- 기본 템플릿 안에 삽입될 내용 시작-->
+    <!-- 기본 템플릿 안에 삽입될 내용 시작 -->
     {% block content %} {% endblock %}
     <div id="footer">
       적을내용 <br />
@@ -44,7 +44,7 @@
     <!-- 기본 템플릿 안에 삽입될 내용 끝 -->
     <!-- Bootstrap JS --끝
     <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
-    <!-- JavaScript Start -->
+    <!-- JS Start -->
     {% block script %} {% endblock %}
     <!-- JavaScript End -->
   </body>
