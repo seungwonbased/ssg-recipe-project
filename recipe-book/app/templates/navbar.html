@@ -1,5 +1,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-<nav class="navbar navbar-expand-lg navbar-light border-bottom">
+<nav
+  class="navbar navbar-expand-lg navbar-light border-bottom"
+  style="background-color: #ff7028"
+>
   <div class="container-fluid me-2">
     <a class="navbar navbar-brand" href="{{ url_for('post._list') }}">Recipe</a>
     <button
@@ -20,18 +23,28 @@
       {% if g.user %}
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('auth.logout') }}"
-            >{{ g.user.username }} (logout)</a
+          <b
+            ><a class="nav-link" href="{{ url_for('auth.logout') }}"
+              >{{ g.user.username }} (logout)</a
+            ></b
           >
         </li>
       </ul>
       {% else %}
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('auth.signup') }}">계정 생성</a>
+          <b
+            ><a class="nav-link" href="{{ url_for('auth.signup') }}"
+              >계정 생성</a
+            ></b
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('auth.login') }}">로그인</a>
+          <b
+            ><a class="nav-link" href="{{ url_for('auth.login') }}"
+              >로그인</a
+            ></b
+          >
         </li>
       </ul>
       {% endif %}

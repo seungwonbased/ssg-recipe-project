@@ -69,20 +69,24 @@ def create():
 @login_required
 def modify(post_id):
     post = Post.query.get_or_404(post_id)
+
     food = FoodForm()
+    foods = db.session.query(Food).all()
     if g.user != post.user:
         flash('수정 권한이 없습니다')
         return redirect(url_for('post.detail', post_id=post_id))
     if request.method == 'POST':  # POST 요청
         form = PostForm()
+
         if form.validate_on_submit():
             form.populate_obj(post)
+            post.price = calculate(food)
             post.modify_date = datetime.now()  # 수정 일시 저장
             db.session.commit()
             return redirect(url_for('post.detail', post_id=post_id))
     else:  # GET 요청
         form = PostForm(obj=post)
-    return render_template('post/post_form.html', form=form, food=food)
+    return render_template('post/post_form.html', form=form, food=food, foods=foods)
 
 
 @bp.route('/delete/<int:post_id>')

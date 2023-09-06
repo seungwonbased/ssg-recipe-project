@@ -8,6 +8,23 @@
   font-family: "Yanone";
   src: url("./font/YanoneKaffeesatz-Regular.ttf");
 }
+
+@font-face {
+  font-family: "LOTTERIACHAB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "yg-jalnan";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   width: 100%;
@@ -53,7 +70,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #676767;
-  border-top: 10px solid #ff973c; /*넓이 스타일 색상*/
+  border-top: 55px solid #ffffff; /*넓이 스타일 색상*/
 }
 
 #campaign {
@@ -84,7 +101,7 @@ body {
 #footer {
   padding: 20px 0 15px;
   margin-top: 50px;
-  background-color: #ff973c;
+  background-color: #ff7028;
   font-size: 0.9em; /*브라우저 창 크기에 상관없이 폰트크기가 변함, px은 고정된값*/
   text-align: center;
   font-style: normal;
@@ -105,7 +122,7 @@ body {
 
 .container {
   display: block;
-  width: 1000px;
+  width: 984px;
   height: auto;
   max-width: 100%; /* 창사이즈가 1000px보다 작아지면 100%처리 */
   margin: 0 auto;
