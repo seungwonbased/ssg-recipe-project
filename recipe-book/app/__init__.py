@@ -6,9 +6,6 @@ from flaskext.markdown import Markdown
 # from kamis import kamis_api
 
 
-import config
-
-
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
     "uq": "uq_%(table_name)s_%(column_0_name)s",
@@ -29,7 +26,6 @@ def page_not_found(e):
 def create_app():
     app = Flask(__name__)
     app.config.from_envvar('APP_CONFIG_FILE')
-    app.config.from_object(config)
 
     # ORM
     db.init_app(app)

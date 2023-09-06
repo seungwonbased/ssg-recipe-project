@@ -12,23 +12,40 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='bootstrap.min.css') }}"
     />
-    <!-- recipe CSS -->
+    <!-- pybo CSS -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
-    <title>SSG Recipe</title>
+    <!--폰트-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Titan+One&display=swap"
+      rel="stylesheet"
+    />
+    <title>Hello, Recipe! for SSG</title>
   </head>
   <body>
-    <!-- 네비게이션 바 -->
-    {% include "navbar.html" %}
-    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    <div id="wrap">
+      <div id="header">
+        <center>
+          <h1 class="title"><a href="/hello">Hello RECIPE</a></h1>
+        </center>
+        {% include "navbar.html" %}
+      </div>
+    </div>
+    <!-- 기본 템플릿 안에 삽입될 내용 시작-->
     {% block content %} {% endblock %}
-    <!-- 기본 템플릿 안에 삽입될 내용 End -->
-    <!-- Bootstrap JS -->
+    <div id="footer">
+      적을내용 <br />
+      <i></i><span> 2조 만듬</span>
+    </div>
+    <!-- 기본 템플릿 안에 삽입될 내용 끝 -->
+    <!-- Bootstrap JS --끝
     <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
-    <!-- 자바스크립트 Start -->
+    <!-- JavaScript Start -->
     {% block script %} {% endblock %}
-    <!-- 자바스크립트 End -->
+    <!-- JavaScript End -->
   </body>
 </html>
