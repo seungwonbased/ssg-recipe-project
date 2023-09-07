@@ -48,8 +48,8 @@
 
 - AWS Lightsail Instance
 	- 1GB RAM, 2 vCPU, 40GB SSD
-- OS: Ubuntu 20.04
-- DB: PostgreSQL
+- OS: ![Static Badge](https://img.shields.io/badge/Ubuntu%2020.04-%23E95420?logo=Ubuntu&logoColor=%23FFFFFF)
+- DB: ![Static Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=PostgreSQL&logoColor=%23FFFFFF)
 
 ### ☎️ Communication Tool: Discord
 #### 채널 구성
@@ -84,7 +84,7 @@
 # 디렉터리 구조
 
 ```
-📁 recipe-book
+📁 recipe-book
 ├──📁 app
 │   ├──📁 api
 │   ├──📁 static
@@ -105,14 +105,16 @@
 └──📄 README.md
 ```
 ### 📁 app
-<details> <summary> 💡: Flask 애플리케이션에 관련된 디렉터리 (접기 / 펼치기) </summary> <!-- summary 아래 한칸 공백 두어야함 -->
-- 📁 api: 공공데이터 API를 호출하는 클라이언트
-- 📁 static: 이미지, css, js 등의 정적 파일을 저장하는 디렉터리
-- 📁 templates: HTML 템플릿을 저장하는 디렉터리
-- 📁 views: Blueprint 파일을 저장하는 디렉터리
-- 📄 \_\_init\_\_.py: 애플리케이션 팩토리 함수가 있는 파일
-- 📄 forms.py: 랜더링에 필요한 HTML 코드를 생성하며 웹 애플리케이션의 입력 폼을 정의하고 필드를 추가하는 Form 클래스가 정의되어 있는 파일
-- 📄 models.py: 데이터를 객체에 담아 ORM을 이용하기 위한 클래스가 정의되어 있는 파일 </details>
+<details> <summary> 💡: Flask 애플리케이션에 관련된 디렉터리 (접기 / 펼치기) </summary> 
+<!-- summary 아래 한칸 공백 두어야함 -->
+- 📁 api: 공공데이터 API를 호출하는 클라이언트<br>
+- 📁 static: 이미지, css, js 등의 정적 파일을 저장하는 디렉터리<br>
+- 📁 templates: HTML 템플릿을 저장하는 디렉터리<br>
+- 📁 views: Blueprint 파일을 저장하는 디렉터리<br>
+- 📄 __init__.py: 애플리케이션 팩토리 함수가 있는 파일<br>
+- 📄 forms.py: 랜더링에 필요한 HTML 코드를 생성하며 웹 애플리케이션의 입력 폼을 정의하고 필드를 추가하는 Form 클래스가 정의되어 있는 파일<br>
+- 📄 models.py: 데이터를 객체에 담아 ORM을 이용하기 위한 클래스가 정의되어 있는 파일<br>
+- </details>
 ### 📁 config
 <details> <summary> 💡: 환경 파일을 저장하는 디렉터리 (접기 / 펼치기) </summary> <!-- summary 아래 한칸 공백 두어야함 -->
 - 📄 __init__.py: 패키지로 인식하기 위해 생성한 파일
@@ -126,7 +128,7 @@
 
 ## URL 
 ```
-/ : 메인 페이지, index.html
+/ : 메인 페이지, index.html
 ├── /post : 게시글 Blueprint
 │     ├── /list : 게시글 리스트
 │     ├── /detail/<int:post_id> : 게시글 상세
