@@ -252,10 +252,6 @@ def create_app():
         migrate.init_app(app, db, render_as_batch=True)
     else:
         migrate.init_app(app, db)
-	"""
-	중간 생략
-	"""
-	return app
 ```
 
 - Flask 애플리케이션을 생성하고 초기화하는 디자인 패턴
