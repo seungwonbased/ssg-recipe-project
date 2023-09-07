@@ -6,66 +6,90 @@ from app.models import Post, Comment, User, Food, Image
 from app.forms import PostForm, CommentForm, FoodForm
 from app.views.auth_views import login_required
 import math
-# from app.kamis import kamis_api
 
 
-bp = Blueprint('post', __name__, url_prefix='/post')
-# food_data = kamis_api.get_food()
+"""
+레시피에 관련된 라우팅 함수를 모아놓은 Blueprint
+URL 구조 설계는 나중에 리팩터링 가능성이 있음!
+"""
 
 
-@bp.route('/list/')
+# Blueprint 객체 생성
+bp = Blueprint("post", __name__, url_prefix="/post")
+
+
+# 레시피 리스트 조회 라우팅 함수
+@bp.route("/list/")
 def _list():
-    page = request.args.get('page', type=int, default=1)
-    kw = request.args.get('kw', type=str, default='')
+    page = request.args.get("page", type=int, default=1)
+    kw = request.args.get("kw", type=str, default="")
     post_list = Post.query.order_by(Post.create_date.desc())
     if kw:
-        search = '%%{}%%'.format(kw)
-        sub_query = db.session.query(Comment.post_id, Comment.content, User.username) \
-            .join(User, Comment.user_id == User.id).subquery()
-        post_list = post_list \
-            .join(User).outerjoin(sub_query, sub_query.c.post_id == Post.id).filter(Post.subject.ilike(search) |  # 질문 제목
-                                                                                    # 질문 내용
-                                                                                    Post.content.ilike(search) |
-                                                                                    # 질문 작성자
-                                                                                    User.username.ilike(search) |
-                                                                                    # 답변 내용
-                                                                                    sub_query.c.content.ilike(search) |
-                                                                                    sub_query.c.username.ilike(
-                                                                                        search)  # 답변 작성자
-                                                                                    ) \
+        search = "%%{}%%".format(kw)
+        sub_query = (
+            db.session.query(Comment.post_id, Comment.content, User.username)
+            .join(User, Comment.user_id == User.id)
+            .subquery()
+        )
+        post_list = (
+            post_list.join(User)
+            .outerjoin(sub_query, sub_query.c.post_id == Post.id)
+            .filter(
+                Post.subject.ilike(search)
+                |  # 질문 제목
+                # 질문 내용
+                Post.content.ilike(search)
+                |
+                # 질문 작성자
+                User.username.ilike(search)
+                |
+                # 답변 내용
+                sub_query.c.content.ilike(search)
+                | sub_query.c.username.ilike(search)  # 답변 작성자
+            )
             .distinct()
+        )
     post_list = post_list.paginate(page=page, per_page=10)
-    return render_template('post/post_list.html', post_list=post_list, page=page, kw=kw)
+    return render_template("post/post_list.html", post_list=post_list, page=page, kw=kw)
 
 
-@bp.route('/detail/<int:post_id>/')
+# 레시피 상세 라우팅 함수
+@bp.route("/detail/<int:post_id>/")
 def detail(post_id):
 
     form = CommentForm()
     post = Post.query.get_or_404(post_id)
-    return render_template('post/post_detail.html', post=post, form=form)
+    return render_template("post/post_detail.html", post=post, form=form)
 
 
-@bp.route('/create/', methods=('GET', 'POST'))
+# 레시피 생성 라우팅 함수
+# 로그인 필요
+@bp.route("/create/", methods=("GET", "POST"))
 @login_required
 def create():
     form = PostForm()
     foods = db.session.query(Food).all()
     food = FoodForm()
 
-    if request.method == 'POST' and form.validate_on_submit():
-        post = Post(subject=form.subject.data,
-                    content=form.content.data, create_date=datetime.now(), user=g.user)
+    if request.method == "POST" and form.validate_on_submit():
+        post = Post(
+            subject=form.subject.data,
+            content=form.content.data,
+            create_date=datetime.now(),
+            user=g.user,
+        )
 
         post.price = calculate(food)
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for('post._list'))
+        return redirect(url_for("post._list"))
 
-    return render_template('post/post_form.html', form=form, food=food, foods=foods)
+    return render_template("post/post_form.html", form=form, food=food, foods=foods)
 
 
-@bp.route('/modify/<int:post_id>', methods=('GET', 'POST'))
+# 레시피 수정 라우팅 함수
+# 로그인 필요
+@bp.route("/modify/<int:post_id>", methods=("GET", "POST"))
 @login_required
 def modify(post_id):
     post = Post.query.get_or_404(post_id)
@@ -73,9 +97,9 @@ def modify(post_id):
     food = FoodForm()
     foods = db.session.query(Food).all()
     if g.user != post.user:
-        flash('수정 권한이 없습니다')
-        return redirect(url_for('post.detail', post_id=post_id))
-    if request.method == 'POST':  # POST 요청
+        flash("수정 권한이 없습니다")
+        return redirect(url_for("post.detail", post_id=post_id))
+    if request.method == "POST":  # POST 요청
         form = PostForm()
 
         if form.validate_on_submit():
@@ -83,34 +107,38 @@ def modify(post_id):
             post.price = calculate(food)
             post.modify_date = datetime.now()  # 수정 일시 저장
             db.session.commit()
-            return redirect(url_for('post.detail', post_id=post_id))
+            return redirect(url_for("post.detail", post_id=post_id))
     else:  # GET 요청
         form = PostForm(obj=post)
-    return render_template('post/post_form.html', form=form, food=food, foods=foods)
+    return render_template("post/post_form.html", form=form, food=food, foods=foods)
 
 
-@bp.route('/delete/<int:post_id>')
+# 레시피 삭제 라우팅 함수
+# 로그인 필요
+@bp.route("/delete/<int:post_id>")
 @login_required
 def delete(post_id):
     post = Post.query.get_or_404(post_id)
     if g.user != post.user:
-        flash('삭제 권한이 없습니다')
-        return redirect(url_for('post.detail', post_id=post_id))
+        flash("삭제 권한이 없습니다")
+        return redirect(url_for("post.detail", post_id=post_id))
     db.session.delete(post)
     db.session.commit()
-    return redirect(url_for('post._list'))
+    return redirect(url_for("post._list"))
 
 
-@bp.route('/like/<int:post_id>/')
+# 레시피 좋아요 라우팅 함수
+# 로그인 필요
+@bp.route("/like/<int:post_id>/")
 @login_required
 def like(post_id):
     _post = Post.query.get_or_404(post_id)
     if g.user == _post.user:
-        flash('자신이 작성한 글에는 좋아요를 누를 수 없어요')
+        flash("자신이 작성한 글에는 좋아요를 누를 수 없어요")
     else:
         _post.liker.append(g.user)
         db.session.commit()
-    return redirect(url_for('post.detail', post_id=post_id))
+    return redirect(url_for("post.detail", post_id=post_id))
 
 
 # def upload_file(req):
@@ -137,39 +165,60 @@ def like(post_id):
 #     return redirect(url_for('post._list'))
 
 
+# 가격 계산 함수
+# html에서 재료를 list로 받아올 수 있으면, 확실한 로직 개선이 있을듯
 def calculate(food):
-    food_1 = db.session.query(Food).filter(
-        Food.foodname == food.food_name_1.data).first()
-    food_2 = db.session.query(Food).filter(
-        Food.foodname == food.food_name_2.data).first()
-    food_3 = db.session.query(Food).filter(
-        Food.foodname == food.food_name_3.data).first()
-    food_4 = db.session.query(Food).filter(
-        Food.foodname == food.food_name_4.data).first()
+    food_1 = (
+        db.session.query(Food).filter(Food.foodname == food.food_name_1.data).first()
+    )
+    food_2 = (
+        db.session.query(Food).filter(Food.foodname == food.food_name_2.data).first()
+    )
+    food_3 = (
+        db.session.query(Food).filter(Food.foodname == food.food_name_3.data).first()
+    )
+    food_4 = (
+        db.session.query(Food).filter(Food.foodname == food.food_name_4.data).first()
+    )
 
     if food_1 is None:
         price_1, unit_1, quantity_1 = 0, 1, 0
     else:
-        price_1, unit_1, quantity_1 = food_1.food_price, food_1.food_unit, food.quantity_1.data
+        price_1, unit_1, quantity_1 = (
+            food_1.food_price,
+            food_1.food_unit,
+            food.quantity_1.data,
+        )
     if food_2 is None:
         price_2, unit_2, quantity_2 = 0, 1, 0
     else:
-        price_2, unit_2, quantity_2 = food_2.food_price, food_2.food_unit, food.quantity_2.data
+        price_2, unit_2, quantity_2 = (
+            food_2.food_price,
+            food_2.food_unit,
+            food.quantity_2.data,
+        )
     if food_3 is None:
         price_3, unit_3, quantity_3 = 0, 1, 0
     else:
-        price_3, unit_3, quantity_3 = food_3.food_price, food_3.food_unit, food.quantity_3.data
+        price_3, unit_3, quantity_3 = (
+            food_3.food_price,
+            food_3.food_unit,
+            food.quantity_3.data,
+        )
     if food_4 is None:
         price_4, unit_4, quantity_4 = 0, 1, 0
     else:
-        price_4, unit_4, quantity_4 = food_4.food_price, food_4.food_unit, food.quantity_4.data
+        price_4, unit_4, quantity_4 = (
+            food_4.food_price,
+            food_4.food_unit,
+            food.quantity_4.data,
+        )
 
-    print(price_1, unit_1, quantity_1)
-    print(price_2, unit_2, quantity_2)
-    print(price_3, unit_3, quantity_3)
-    print(price_4, unit_4, quantity_4)
-
-    price = math.floor(((int(price_1) * int(quantity_1) / int(unit_1)) + (int(price_2) * int(quantity_2) / int(unit_2)) +
-                        (int(price_3) * int(quantity_3) / int(unit_3)) + (int(price_4) * int(quantity_4) / int(unit_4))))
-
-    return price
+    return math.floor(
+        (
+            (int(price_1) * int(quantity_1) / int(unit_1))
+            + (int(price_2) * int(quantity_2) / int(unit_2))
+            + (int(price_3) * int(quantity_3) / int(unit_3))
+            + (int(price_4) * int(quantity_4) / int(unit_4))
+        )
+    )
