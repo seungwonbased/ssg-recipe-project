@@ -12,8 +12,10 @@
 
 ## 2. 👥 팀 소개
 
-
-
+|배승원|서종훈|이지윤|정지환|김지훈|
+|---|---|---|---|---|
+|![img](https://github.com/seungwonbased/ssg-recipe-project/blob/main/assets/%EC%8A%B9%EC%9B%90.png)|![img](https://github.com/seungwonbased/ssg-recipe-project/blob/main/assets/%EC%8A%B9%EC%9B%90.png)|![img](https://github.com/seungwonbased/ssg-recipe-project/blob/main/assets/%EC%8A%B9%EC%9B%90.png)|![img](https://github.com/seungwonbased/ssg-recipe-project/blob/main/assets/%EC%8A%B9%EC%9B%90.png)|![img](https://github.com/seungwonbased/ssg-recipe-project/blob/main/assets/%EC%8A%B9%EC%9B%90.png)|
+|![Static Badge](https://img.shields.io/badge/Team%20Leader-%23FE642E) ![Static Badge](https://img.shields.io/badge/Development-%235882FA)|![Static Badge](https://img.shields.io/badge/Development-%235882FA)|![Static Badge](https://img.shields.io/badge/UI%20%2F%20UX-%23BE81F7)|![Static Badge](https://img.shields.io/badge/%EA%B8%B0%ED%9A%8D%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC-%23088A29)|![Static Badge](https://img.shields.io/badge/%EA%B8%B0%ED%9A%8D%20%EB%B0%8F%20%EA%B4%80%EB%A6%AC-%23088A29)|
 
 ## 3. 🗓️ 개발 기간 (23년 9월 1일 ~ 23년 9월 7일)
 
