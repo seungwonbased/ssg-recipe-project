@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#라운지",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -147,8 +147,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "670d8fc7bd844b6e",
+  "active": "9c47c2f81bdcee04",
   "lastOpenFiles": [
+    "assets/지환.png",
+    "assets/승원.png",
+    "승원.png",
+    "지환.png",
+    "assets/지훈.png",
+    "assets",
+    "untitled folder",
     "Untitled.md",
     "README.md",
     "main_page.png"
