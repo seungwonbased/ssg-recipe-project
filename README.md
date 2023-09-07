@@ -253,7 +253,7 @@ def create_app():
     else:
         migrate.init_app(app, db)
 
-	...
+	# 생략
 
 	return app
 ```
