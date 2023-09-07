@@ -1,4 +1,4 @@
-# <span id='top'> 🥙 한끼얼마 💰</span>
+# <span id='top'> 🥙 한끼얼마 Report💰</span>
 
 ## 1.  👨🏽‍💻 한끼얼마 소개
 
@@ -55,7 +55,7 @@
 #### 채널 구성
 
 ```
-- CHAT CHANNEL
+- CHAT CHANNEL 
 	# 라운지
 	# 공지
 	# 아이디어
@@ -66,22 +66,41 @@
 - VOICE CHANNEL
 	# 미팅
 ```
-- #라운지: 자유롭게 토론
-- #공지: 미팅, 일정, 회의록 공지
-- #아이디어: 번뜩이는 아이디어
-- #레퍼런스: 참고할만한 서비스, 자료 레퍼런스
-- #이슈: 개발 및 프로젝트 진행에 있어 생기는 이슈
-- #질문: 진짜 아무 질문이나
-- #파일-및-코드: 파일 및 코드 공유
-- #미팅: 보이스 & 페이스 미팅
+- \# 라운지: 자유롭게 토론
+- \# 공지: 미팅, 일정, 회의록 공지
+- \# 아이디어: 번뜩이는 아이디어
+- \# 레퍼런스: 참고할만한 서비스, 자료 레퍼런스
+- \# 이슈: 개발 및 프로젝트 진행에 있어 생기는 이슈
+- \# 질문: 진짜 아무 질문이나
+- \# 파일-및-코드: 파일 및 코드 공유
+- \# 미팅: 보이스 & 페이스 미팅
 
-## 5. ⚒️ 서비스 기능 및 특징
-##
+## 5. ⚒️ 서비스 기능
+### 5.1. URL 구조
 
+```
+/ : 메인 페이지, index.html
+├──── /post : 게시글 Blueprint
+│        ├──── /list : 게시글 리스트
+│        ├──── /detail/<int:post_id> : 게시글 상세
+│        ├──── /create : 게시글 작성 (HTTP Method: GET, POST)
+│        ├──── /modify/<int:post_id> : 게시글 수정 (HTTP Method: GET, POST)
+│        ├──── /delete/<int:post_id> : 게시글 삭제
+│        └──── /like/<int:post_id> : 게시글 좋아요
+├──── /comment : 댓글 Blueprint
+│        ├──── /create/<int:post_id> : 댓글 생성 (HTTP Method: POST)
+│        ├──── /modify/<int:comment_id> : 댓글 수정 (HTTP Method: GET, POST)
+│        ├──── /delete/<int:comment_id> : 댓글 삭제
+│        └──── /like/<int:post_id>/ : 게시글 좋아요
+└──── /auth : 인증 Blueprint
+         ├──── /signup : 회원 가입 (HTTP Method: GET, POST)
+         ├──── /login : 로그인 (HTTP Method: GET, POST)
+         └──── /logout : 로그아웃
+```
 
+## 6. 📚 서비스 특징 및 사용 라이브러리
 
-
-# 디렉터리 구조
+### 6.1. 디렉터리 구조
 
 ```
 📁 recipe-book
@@ -105,7 +124,7 @@
 └──📄 README.md
 ```
 ### 📁 app
-<details> <summary> 💡: Flask 애플리케이션에 관련된 디렉터리 (접기 / 펼치기) </summary> 
+<details> <summary> 💡: Flask 애플리케이션에 관련된 디렉터리 (펼치면 상세) </summary> 
 <!-- summary 아래 한칸 공백 두어야함 -->
 - 📁 api: 공공데이터 API를 호출하는 클라이언트<br>
 - 📁 static: 이미지, css, js 등의 정적 파일을 저장하는 디렉터리<br>
@@ -114,7 +133,7 @@
 - 📄 __init__.py: 애플리케이션 팩토리 함수가 있는 파일<br>
 - 📄 forms.py: 랜더링에 필요한 HTML 코드를 생성하며 웹 애플리케이션의 입력 폼을 정의하고 필드를 추가하는 Form 클래스가 정의되어 있는 파일<br>
 - 📄 models.py: 데이터를 객체에 담아 ORM을 이용하기 위한 클래스가 정의되어 있는 파일<br>
-- </details>
+</details><br>
 ### 📁 config
 <details> <summary> 💡: 환경 파일을 저장하는 디렉터리 (접기 / 펼치기) </summary> <!-- summary 아래 한칸 공백 두어야함 -->
 - 📄 __init__.py: 패키지로 인식하기 위해 생성한 파일
@@ -126,32 +145,7 @@
 ### 📄 requirements.txt
 - 💡: 가상 환경에서 설치한 라이브러리들을 파일로 내보내 다른 환경에서도 쉽게 같은 환경을 구축할 수 있게 함
 
-## URL 
-```
-/ : 메인 페이지, index.html
-├── /post : 게시글 Blueprint
-│     ├── /list : 게시글 리스트
-│     ├── /detail/<int:post_id> : 게시글 상세
-│     ├── /create : 게시글 작성 (HTTP Method: GET, POST)
-│     ├── /modify/<int:post_id> : 게시글 수정 (HTTP Method: GET, POST)
-│     ├── /delete/<int:post_id> : 게시글 삭제
-│     └── /like/<int:post_id> : 게시글 좋아요
-├── /comment : 댓글 Blueprint
-│     ├── /create/<int:post_id> : 댓글 생성 (HTTP Method: POST)
-│     ├── /modify/<int:comment_id> : 댓글 수정 (HTTP Method: GET, POST)
-│     ├── /delete/<int:comment_id> : 댓글 삭제
-│     └── /like/<int:post_id>/ : 게시글 좋아요
-└── /auth : 인증 Blueprint
-      ├── /signup : 회원 가입 (HTTP Method: GET, POST)
-      ├── /login : 로그인 (HTTP Method: GET, POST)
-      └── /logout : 로그아웃
-```
-
-# 서비스 특징 및 사용 라이브러리
-
-## Flask
-- 간결함
-## Application Factory Pattern
+### 6.2. Application Factory Pattern
 ```python
 # Factory Function
 def create_app():
@@ -168,31 +162,31 @@ def create_app():
 
 	return app
 ```
-- 애플리케이션 객체를 Factory Function을 사용해 동적으로 생성하고 설정
 - Flask 애플리케이션을 생성하고 초기화하는 디자인 패턴
 	- 애플리케이션 객체를 Factory Function을 사용해 동적으로 생성하고 설정
 		- 여러 개의 서로 다른 애플리케이션 인스턴스를 만들고 다른 환경(개발, 테스트 프로덕션)에서 실행할 수 있음
-		- 이를 통 본 프로젝트에서 개발과 운영 환경의 설정을 다르게 함
+		- 이를 통해 본 프로젝트에서 개발과 운영 환경의 설정을 다르게 함
 	- 장점
 		- 확장성 향상
 		- 설정과 환경 관리의 용이
 
-## Blueprint
+### 6.3. Blueprint
 - Flask 블루프린트는 웹 애플리케이션을 여러 개의 독립적인 모듈로 나누고, 각 모듈을 개별적으로 작업하거나 재사용할 수 있게 해줌
-- 라우팅 함수의 집합
+	- 라우팅 함수의 집합
 - 웹 애플리케이션을 개발할 때 코드를 더 구조화하고 관리하기 쉽게 만듬
 - 장점
 	1. 모듈화
-		- 각 기능을 독립적인 블루프린트로 정의하여 모듈화된 코드 작성이 가능하므로 유지 보수와 확장이 용이
+		- 각 기능을 독립적인 블루프린트로 정의하여 모듈화된 코드 작성이 가능하므로 유지 보수와 확장이 용이
 	2. . 라우팅 분리
 		- URL 라우팅을 각 블루프린트 내에서 관리하므로 충돌을 방지하고 URL 구조를 구성하기 쉬움
 	3. 코드 재사용
 		- 비슷한 기능을 다른 애플리케이션에서 재사용할 수 있음
+- 본 프로젝트에서는 애플리케이션을 목적에 따라 모듈로 분할해 라우팅 함수를 작성했음
 
-## Server-Side Rendering
+### 6.4. Server-Side Rendering
 - Front-end 애플리케이션 개발이 불가능해 웹 애플리케이션의 뷰를 서버에서 생성해 클라이언트에게 전달하는 방식인 SSR 사용
 
-## Object-Relational Mapping
+### 6.5. Object-Relational Mapping
 - 객체와 관계형 데이터베이스 간의 상호 작용을 간단하게 만들어주는 프로그래밍 기술 또는 도구
 - ORM은 데이터베이스 테이블과 OOP 언어 간의 불일치를 해결하고 데이터베이스와 애플리케이션 코드 간의 상호 작용을 추상화
 - Python에서는 SQLAlchemy 사용
@@ -211,16 +205,18 @@ def create_app():
 	5. 결과 처리: 데이터베이스에서 반환된 결과를 객체로 변환하거나 필요한 작업을 수행
 - 예시: Python code -> SQL query
 ```python
+# Python code
 sub_query = db.session.query(Comment.post_id, Comment.content, User.username)   .join(User, Comment.user_id == User.id).subquery()
 ```
 ```sql
+-- SQL query
 SELECT * 
 FROM post_list INNER JOIN "User" ON post_list.user_id = "User".id 
 LEFT OUTER JOIN sub_query ON sub_query.post_id = post_list.id 
 WHERE post_list.subject ILIKE 'search_value';
 ```
 
-### Flask ORM Library: SQLAlchemy
+### 6.6. Flask ORM Library: SQLAlchemy
 - Python을 위한 ORM 및 SQL 툴킷 라이브러리
 - 데이터데이스와 상호작용하기 위한 도구 제공
 - 구성 요소
@@ -234,25 +230,20 @@ WHERE post_list.subject ILIKE 'search_value';
 	- flask db migrate: 모델을 생성하거나 변경할 때 사용
 	- flask db upgrade: 모델의 변경 내용을 실제 데이터베이스에 적용할 때 사용
 
-### Models.py
-- Models.py 파일에 ORM을 사용해 모델을 정의했음
-	- 데이터베이스 테이블과 상호작용하기 위한 클래스를 정의함
+### 6.7. Models
+- Models.py 파일에 ORM을 사용해 모델을 정의함
+	- 데이터베이스 테이블과 상호작용하기 위한 클래스를 정의
 - 클래스의 각 속성은 매핑되는 테이블의 Column과 일치
 - 데이터 유형과 제약 조건 또한 지정
 
-## @Decorator
-### @app.route
-- Routing Function
-- 애플리케이션의 URL 경로에 따라 어떤 함수가 실행될 지를 정의하는 데코레이터
-- 사용자가 특정 URL을 요청할 때 해당 URL에 연결된 라우팅 함수가 실행되어 사용자에게 응답 반환
-
-### @bp.route
+### 6.8. @Decorator
+#### @bp.route
 - 애플리케이션에서 블루프린트 객체를 사용해 URL 경로에 따라 어떤 함수가 실행될 지를 정의하는 데 사용되는 데코레이터
 - @app.route 또한 URL 경로와 함수 간의 매핑을 정의하지만, @app.route는 Flask 애플리케이션 객체('app')에 직접 라우팅 함수를 연결하는 데 사용되는 반면, @bp.route 데코레이터는 블루프린트 객체에 라우팅 함수를 연결하는 데 사용됨
 	- 블루프린트는 Flask 애플리케이션을 모듈화하고 라우팅을 구조화하는 데 사용됨
 	- 블루프린트를 사용한 라우팅 함수들을 관리하는 데 유용하며 모듈화, 확장 가능의 장점이 있음
 
-## 참고: 'request' 객체
+### 6.9. 'request' 객체
 - Flask 애플리케이션에서 HTTP 요청과 관련된 정보를 처리하려면 'request' 객체를 사용
 - 이 객체는 현재 요청과 관련된 다양한 정보를 제공하며 HTTP 메서드, URL, 헤더, 쿼리 문자열, 폼 데이터, JSON 데이터 및 기타 요청 데이터에 접근할 수 있도록 도와줌
 - 'request' 객체를 사용해 얻을 수 있는 주요 정보
@@ -268,7 +259,7 @@ WHERE post_list.subject ILIKE 'search_value';
 	7. **파일 업로드**: 파일 업로드가 있는 POST 요청의 경우, `request.files`를 사용하여 업로드된 파일에 접근할 수 있음    
 	8. **세션 정보**: `request.session`을 사용하여 현재 요청과 관련된 세션 데이터에 접근할 수 있음
 
-## Flask Form
+### 6.10. Flask Form
 - Flask 애플리케이션에서 웹 폼을 쉽게 처리하기 위한 확장 라이브러리
 - 웹 폼을 쉽게 생성하고, Form validation, 데이터 수집, 에러 처리 등을 할 수 있음
 - CSRF(Cross-Site Request Forgery) 방지 같은 보안 기능도 내장되어 있음
@@ -279,8 +270,7 @@ WHERE post_list.subject ILIKE 'search_value';
 		- POST 요청일 때 검증 작업 등
 	3. HTML 템플릿 파일에서 웹 폼을 렌더링하고 사용자에게 입력을 받음
 
-## Paging
-### Pagenation
+### 6.11. 페이징 - Pagenation
 - SQLAlchemy 라이브러리의 Pagination 객체 사용
 - 게시물 리스트가 담긴 객체에 pagenate 함수 적용
 	-> Pagination 객체 반환됨
@@ -296,8 +286,7 @@ WHERE post_list.subject ILIKE 'search_value';
 |prev_num / next num|이전 / 다음 페이지 번호|현재 페이지가 5인 경우 4 / 6|
 |has_prev / has_next|이전 / 다음 페이지 존재 여부|True / False|
 
-## 회원가입
-### WTForms
+### 6.12. 회원가입 - WTForms
 - 웹에서 폼을 정의하고 검증하기 위한 라이브러리
 	- 웹 폼을 쉽게 생성하고, 사용자로부터 데이터를 수집하고 검증할 수 있음
 - 회원가입을 위해 FlaskForm을 상속 받아 UserCreateForm 생성
@@ -306,7 +295,7 @@ WHERE post_list.subject ILIKE 'search_value';
 		- 라우팅 함수에서 generate_password_hash 함수로 암호화
 	- EmailField: StringField와 동일하지만 템플릿 자동 변환으로 사용시 \<input type="email">로 변환됨
 
-## 로그인
+### 6.13. 로그인 - session, g
 - FlaskForm을 상속 받아 UserLoginForm 생성
 - 로그인 여부는 g 객체를 사용해 라우팅 함수에서 검증
 - 로그인 라우팅 함수에서 session, g를 import
@@ -318,15 +307,3 @@ WHERE post_list.subject ILIKE 'search_value';
 		- Flask 애플리케이션 내에서 글로벌하게 사용되는 데이터를 저장하기 위한 객체
 		- 모든 요청에서 공유되는 데이터를 저장하고, 다른 함수나 뷰에서 이 데이터에 접근 가능
 		- 데이터베이스 연결, 현재 사용자 정보, 로그 기록 등과 같이 여러 곳에서 사용되는 데이터를 저장할 때 유용
-- 참고: Cookie와 Session
-	- 쿠키와 세션은 웹 애플리케이션에서 사용자 정보를 저장하고 유지하는 데 사용되는 두 가지 다른 메커니즘
-	- Cookie
-		- **목적**: 쿠키는 클라이언트 측에 데이터를 저장하는 데 사용, 주로 상태 정보를 유지하거나 사용자 특정 정보를 기억하기 위해 사용
-		- **작동 방식**: 서버에서 클라이언트로 작은 데이터 조각을 보내어 쿠키로 저장하고, 이후 클라이언트는 해당 쿠키를 모든 요청과 함께 서버로 다시 전송
-		- **보안**: 쿠키는 클라이언트에 저장되기 때문에 보안에 취약할 수 있으며, 중요한 데이터를 저장하는 데는 부적합할 수 있음, HTTPS와 같은 보안 연결을 통해 전송되어야 함
-		- **사용 사례**: 로그인 정보, 사용자 선호 설정, 장바구니 항목 등을 저장하는 데 사용
-	- **Session**
-		- **목적**: 세션은 서버 측에 데이터를 저장하는 데 사용, 주로 사용자 인증 및 상태 관리를 위해 사용
-		- **작동 방식**: 세션은 서버에서 데이터를 유지하고, 클라이언트에는 세션 식별자(session ID)만 전송, 클라이언트가 요청을 보낼 때마다 서버는 해당 세션 ID를 사용하여 해당 세션 데이터를 가져옴
-		- **보안**: 세션 데이터는 서버에 저장되기 때문에 쿠키보다 안전, 그러나 세션 ID가 유출될 경우 보안에 취약할 수 있으므로 적절한 보안 조치가 필요
-		- **사용 사례**: 로그인 상태, 사용자 정보, 장바구니 내역 등을 관리하고 상태를 추적하는 데 사용
