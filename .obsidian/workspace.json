@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "6481bb7b0ffe9932",
@@ -146,6 +147,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9c47c2f81bdcee04",
-  "lastOpenFiles": []
+  "active": "106ab62a417f0eef",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "README.md",
+    "main_page.png"
+  ]
 }
