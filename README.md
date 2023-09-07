@@ -187,6 +187,9 @@
 #### 📄 requirements.txt
 > 💡: 가상 환경에서 설치한 라이브러리들을 파일로 내보내 다른 환경에서도 쉽게 같은 환경을 구축할 수 있게 함
 
+### 6.2. Database Schema
+![img]()
+
 ### 6.2. Application Factory Pattern
 
 ```python
@@ -477,7 +480,7 @@ sudo systemctl restart ssgrecipe.service
 - requirements.txt를 통해 개발 환경과 똑같은 라이브러리를 설치하고, 웹 서버와 WSGI도 정상적으로 돌아가고 있는데 작동이 되지 않음
 > ✅ 해결: 운영 환경에서 FLASK_DEBUG를 True로 바꾸기 싫어 로그를 txt로 저장하도록 함, 이를 통해 APP_CONFIG_FILE 인식이 안돼 오류가 나고 있었음, 운영 서버의 alias 설정을 통해 해결
 
-### 8.9. 재료 DB를 수집하는 방안에 대한 의견 차이
+### 8.9. 재료 DB를 수집하는 방안에 대한 의견 차이
 - 이상적 목표 : 신세계 리테일 브랜드 내 가격 API 도입
 - 목표의 근거
 	1. 신세계 내 커뮤니티 커머스 발전 가능 
