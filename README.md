@@ -46,7 +46,7 @@
 	- IDE: ![Static Badge](https://img.shields.io/badge/PyCharm-%23000000?logo=PyCharm&logoColor=%23FFFFFF)
 
 ### 🏭 운영 환경
-- AWS Lightsail Instance
+- ![Static Badge](https://img.shields.io/badge/AWS-FF9900?logo=Amazon%20AWS&logoColor=%23FFFFFF) Lightsail Instance
 	- 1GB RAM, 2 vCPU, 40GB SSD
 - OS: ![Static Badge](https://img.shields.io/badge/Ubuntu%2020.04-%23E95420?logo=Ubuntu&logoColor=%23FFFFFF)
 - DB: ![Static Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=PostgreSQL&logoColor=%23FFFFFF)
@@ -138,6 +138,9 @@
 - 댓글 작성자 또는 관리자 권한을 가진 사용자만 해당 댓글을 수정할 수 있음
 #### 댓글 삭제
 - 댓글 작성자 또는 관리자 권한을 가진 사용자만 해당 댓글을 삭제할 수 있음
+#### 댓글 좋아요
+- 로그인한 사용자는 댓글에 좋아요를 누를 수 있음
+- 자신의 댓글을 좋아요할 경우 불가능하다는 메세지가 출력됨
 
 ## 6. 📚 서비스 특징 및 사용 라이브러리
 
@@ -185,6 +188,7 @@
 > 💡: 가상 환경에서 설치한 라이브러리들을 파일로 내보내 다른 환경에서도 쉽게 같은 환경을 구축할 수 있게 함
 
 ### 6.2. Application Factory Pattern
+
 ```python
 # Factory Function
 def create_app():
@@ -346,3 +350,89 @@ WHERE post_list.subject ILIKE 'search_value';
 		- Flask 애플리케이션 내에서 글로벌하게 사용되는 데이터를 저장하기 위한 객체
 		- 모든 요청에서 공유되는 데이터를 저장하고, 다른 함수나 뷰에서 이 데이터에 접근 가능
 		- 데이터베이스 연결, 현재 사용자 정보, 로그 기록 등과 같이 여러 곳에서 사용되는 데이터를 저장할 때 유용
+
+## 7. 🚀 배포
+### AWS Lightsail
+- AWS Lightsail 서비스를 사용해 배포
+- 저렴하고, 아주 간단하게 배포가 가능해 선택하였음
+
+### 인스턴스 스펙
+- RAM: 1GB
+- vCPU: 2
+- SSD: 40GB
+- OS: Ubuntu 20.04
+
+### 원격 관리 방법 - SSH
+- Private key 발급 후 다음과 같은 명령어로 서버에 접속
+```bash
+ssh -i ~/PrivateKeys/ssgrecipe.pem ubuntu@static_ip
+```
+
+### 초기 서버 환경 설정
+```bash
+git clone https://github.com/seungwonbased/ssg-recipe-project.git
+```
+- git 명령어로 clone 해온 뒤에 requirements.txt를 통해 라이브러리 설치
+	-> 개발 환경과 같은 환경으로 서버 구성
+- 서버 환경 변수 설정
+- 데이터베이스 초기화 및 migrate, upgrade
+
+### config 디렉터리 생성
+- 개발 / 운영 환경을 나누기 위해 config 파일 또한 다음과 같이 분리
+```
+📁 config
+├────📄 __init__.py
+├────📄 default.py
+├────📄 develoment.py
+└────📄 production.py
+```
+
+### 웹 서버의 동적 페이지 요청 처리
+#### WSGI (Web Server Gateway Interface, Whiskey)
+- Python 웹 애플리케이션과 웹 서버 간의 표준화된 인터페이스
+- WSGI는 웹 서버와 웹 애플리케이션 프레임워크 또는 애플리케이션을 분리해 개발자가 서로 다른 서버 및 애플리케이션을 조합하여 사용할 수 있도록 중간 계층 역할을 함
+- 즉, Python으로 작성된 여러 웹 애플리케이션 프레임워크와 웹 서버를 통합하는 데 사용됨
+- Flask는 WSGI 애플리케이션이고, WSGI 서버에서 요청을 받아 동작
+##### Gunicorn
+- 운영을 위해 운영 서버에 WSGI인 Gunicorn 설치
+- Gunicorn을 리눅스에서 서비스로 등록하기 위해 환경 변수 파일 생성 및 서비스 파일 생성
+- 서비스 자동 실행 설정
+```bash
+sudo systemctl enable ssgrecipe.service
+```
+
+#### Web Server
+- 웹 서버는 클라이언트로부터 HTTP 요청을 수신하고, 정적 파일(HTML, CSS, 이미지 등)을 서비스하며, 동적 컨텐츠를 생성하는 웹 애플리케이션 서버나 어플리케이션 서버에 요청을 전달하는 역할
+- 주로 정적 컨텐츠를 서비스하는 역할을 하며, 웹 서버로는 Apache, Nginx, IIS 등이 있음
+- 로드 밸런싱: 여러 웹 서버 인스턴스 간에 트래픽을 분산
+- 보안 및 인증: SSL/TLS 인증서 관리 및 보안 설정을 처리
+- 리버스 프록시: 동적 컨텐츠를 생성하는 애플리케이션 서버로 요청을 전달
+##### Nginx
+- 운영 서버의 웹 서버로 Nginx를 설치
+- 비동기 기반 구조라 더 적은 리소스를 사용해서 요청을 처리할 수 있음
+- Nginx의 설정을 변경
+	- 80 포트로 서비스하도록 함
+	- static 경로를 지정해 정적 리소스를 서빙할 수 있도록 함
+
+### Logging
+- 운영 환경에서는 보안 이슈로 FLASK_DEBUG가 False로 되어있으므로 로그를 파일로 출력하도록 함
+- 출력되는 로그 레벨은 2단계 INFO, 일반적인 정보를 출력
+
+### Database Migration
+- 운영 서버에서는 SQLite가 아닌 오픈소스 RDBMS인 PostgreSQL를 사용하기로 결정
+- AWS에서 PostgreSQL RDS 데이터베이스를 생성
+- ***ORM의 마법***으로 config 파일에서 DB 엔드포인트, user, pw, url 수정만으로 설정 완료
+	- 스키마나 쿼리, 애플리케이션 코드를 단 한 개도 변경하지 않음
+	- 감동의 눈물을 흘림
+- 서버에서 다음 명령어를 입력하면 마이그레이션 완료!
+```bash
+flask db init
+flask db migrate
+flask db upgrade
+sudo systemctl restart ssgrecipe.service
+```
+
+## 8. 이슈와 트러블슈팅
+
+
+## 9. 회고 

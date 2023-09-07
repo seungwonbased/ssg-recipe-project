@@ -70,7 +70,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "6481bb7b0ffe9932",
@@ -149,8 +150,11 @@
   },
   "active": "9c47c2f81bdcee04",
   "lastOpenFiles": [
-    "assets/지환.png",
+    "assets/지윤.png",
+    "assets/종훈.png",
     "assets/승원.png",
+    "assets/Screenshot 2023-09-07 at 11.26.29.png",
+    "assets/지환.png",
     "승원.png",
     "지환.png",
     "assets/지훈.png",
