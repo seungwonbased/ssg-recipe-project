@@ -188,9 +188,11 @@
 > 💡: 가상 환경에서 설치한 라이브러리들을 파일로 내보내 다른 환경에서도 쉽게 같은 환경을 구축할 수 있게 함
 
 ### 6.2. Database Schema
-![img]()
+![img](https://github.com/seungwonbased/ssg-recipe-project/blob/main/assets/ERD.JPG)
+- 참고: Image 테이블은 생성은 해놨지만, 아직 참조 관계를 구성하지 않음
+	- 운영 서버에 적용되면 Post.id를 참조할 것임
 
-### 6.2. Application Factory Pattern
+### 6.3. Application Factory Pattern
 
 ```python
 # Factory Function
@@ -216,7 +218,7 @@ return app
 		- 확장성 향상
 		- 설정과 환경 관리의 용이
 
-### 6.3. Blueprint
+### 6.4. Blueprint
 - Flask 블루프린트는 웹 애플리케이션을 여러 개의 독립적인 모듈로 나누고, 각 모듈을 개별적으로 작업하거나 재사용할 수 있게 해줌
 	- 라우팅 함수의 집합
 - 웹 애플리케이션을 개발할 때 코드를 더 구조화하고 관리하기 쉽게 만듬
@@ -229,10 +231,10 @@ return app
 		- 비슷한 기능을 다른 애플리케이션에서 재사용할 수 있음
 - 본 프로젝트에서는 애플리케이션을 목적에 따라 모듈로 분할해 라우팅 함수를 작성했음
 
-### 6.4. Server-Side Rendering
+### 6.5. Server-Side Rendering
 - Front-end 애플리케이션 개발이 불가능해 웹 애플리케이션의 뷰를 서버에서 생성해 클라이언트에게 전달하는 방식인 SSR 사용
 
-### 6.5. Object-Relational Mapping
+### 6.6. Object-Relational Mapping
 - 객체와 관계형 데이터베이스 간의 상호 작용을 간단하게 만들어주는 프로그래밍 기술 또는 도구
 - ORM은 데이터베이스 테이블과 OOP 언어 간의 불일치를 해결하고 데이터베이스와 애플리케이션 코드 간의 상호 작용을 추상화
 - Python에서는 SQLAlchemy 사용
@@ -262,7 +264,7 @@ LEFT OUTER JOIN sub_query ON sub_query.post_id = post_list.id
 WHERE post_list.subject ILIKE 'search_value';
 ```
 
-### 6.6. Flask ORM Library: SQLAlchemy
+### 6.7. Flask ORM Library: SQLAlchemy
 - Python을 위한 ORM 및 SQL 툴킷 라이브러리
 - 데이터데이스와 상호작용하기 위한 도구 제공
 - 구성 요소
@@ -276,20 +278,20 @@ WHERE post_list.subject ILIKE 'search_value';
 	- flask db migrate: 모델을 생성하거나 변경할 때 사용
 	- flask db upgrade: 모델의 변경 내용을 실제 데이터베이스에 적용할 때 사용
 
-### 6.7. Models
+### 6.8. Models
 - Models.py 파일에 ORM을 사용해 모델을 정의함
 	- 데이터베이스 테이블과 상호작용하기 위한 클래스를 정의
 - 클래스의 각 속성은 매핑되는 테이블의 Column과 일치
 - 데이터 유형과 제약 조건 또한 지정
 
-### 6.8. @Decorator
+### 6.9. @Decorator
 #### @bp.route
 - 애플리케이션에서 블루프린트 객체를 사용해 URL 경로에 따라 어떤 함수가 실행될 지를 정의하는 데 사용되는 데코레이터
 - @app.route 또한 URL 경로와 함수 간의 매핑을 정의하지만, @app.route는 Flask 애플리케이션 객체('app')에 직접 라우팅 함수를 연결하는 데 사용되는 반면, @bp.route 데코레이터는 블루프린트 객체에 라우팅 함수를 연결하는 데 사용됨
 	- 블루프린트는 Flask 애플리케이션을 모듈화하고 라우팅을 구조화하는 데 사용됨
 	- 블루프린트를 사용한 라우팅 함수들을 관리하는 데 유용하며 모듈화, 확장 가능의 장점이 있음
 
-### 6.9. 'request' 객체
+### 6.10. 'request' 객체
 - Flask 애플리케이션에서 HTTP 요청과 관련된 정보를 처리하려면 'request' 객체를 사용
 - 이 객체는 현재 요청과 관련된 다양한 정보를 제공하며 HTTP 메서드, URL, 헤더, 쿼리 문자열, 폼 데이터, JSON 데이터 및 기타 요청 데이터에 접근할 수 있도록 도와줌
 - 'request' 객체를 사용해 얻을 수 있는 주요 정보
@@ -305,7 +307,7 @@ WHERE post_list.subject ILIKE 'search_value';
 	7. **파일 업로드**: 파일 업로드가 있는 POST 요청의 경우, `request.files`를 사용하여 업로드된 파일에 접근할 수 있음    
 	8. **세션 정보**: `request.session`을 사용하여 현재 요청과 관련된 세션 데이터에 접근할 수 있음
 
-### 6.10. Flask Form
+### 6.11. Flask Form
 - Flask 애플리케이션에서 웹 폼을 쉽게 처리하기 위한 확장 라이브러리
 - 웹 폼을 쉽게 생성하고, Form validation, 데이터 수집, 에러 처리 등을 할 수 있음
 - CSRF(Cross-Site Request Forgery) 방지 같은 보안 기능도 내장되어 있음
@@ -316,7 +318,7 @@ WHERE post_list.subject ILIKE 'search_value';
 		- POST 요청일 때 검증 작업 등
 	3. HTML 템플릿 파일에서 웹 폼을 렌더링하고 사용자에게 입력을 받음
 
-### 6.11. 페이징 - Pagenation
+### 6.12. 페이징 - Pagenation
 - SQLAlchemy 라이브러리의 Pagination 객체 사용
 - 레시피 리스트가 담긴 객체에 pagenate 함수 적용
 	-> Pagination 객체 반환됨
@@ -332,7 +334,7 @@ WHERE post_list.subject ILIKE 'search_value';
 |prev_num / next num|이전 / 다음 페이지 번호|현재 페이지가 5인 경우 4 / 6|
 |has_prev / has_next|이전 / 다음 페이지 존재 여부|True / False|
 
-### 6.12. 회원가입 - WTForms
+### 6.13. 회원가입 - WTForms
 - 웹에서 폼을 정의하고 검증하기 위한 라이브러리
 	- 웹 폼을 쉽게 생성하고, 사용자로부터 데이터를 수집하고 검증할 수 있음
 - 회원가입을 위해 FlaskForm을 상속 받아 UserCreateForm 생성
@@ -341,7 +343,7 @@ WHERE post_list.subject ILIKE 'search_value';
 		- 라우팅 함수에서 generate_password_hash 함수로 암호화
 	- EmailField: StringField와 동일하지만 템플릿 자동 변환으로 사용시 \<input type="email">로 변환됨
 
-### 6.13. 로그인 - session, g
+### 6.14. 로그인 - session, g
 - FlaskForm을 상속 받아 UserLoginForm 생성
 - 로그인 여부는 g 객체를 사용해 라우팅 함수에서 검증
 - 로그인 라우팅 함수에서 session, g를 import
