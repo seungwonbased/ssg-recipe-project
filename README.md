@@ -41,16 +41,16 @@
 ### ⌨️ 개발 환경
 
 - 승원
-  - OS: ![Static Badge](https://img.shields.io/badge/Mac%20OS%20Ventura-%23000000?logo=Apple&logoColor=%23FFFFFF)
-  - Editor: ![Static Badge](https://img.shields.io/badge/VSCode-007ACC?logo=Visual%20Studio%20Code&logoColor=%23FFFFFF)
+	- OS: ![Static Badge](https://img.shields.io/badge/Mac%20OS%20Ventura-%23000000?logo=Apple&logoColor=%23FFFFFF)
+	- Editor: ![Static Badge](https://img.shields.io/badge/VSCode-007ACC?logo=Visual%20Studio%20Code&logoColor=%23FFFFFF)
 - 종훈
-  - OS: ![Static Badge](https://img.shields.io/badge/Windows%2010-%230078D6?logo=Windows%2010&logoColor=%23FFFFFF)
-  - IDE: ![Static Badge](https://img.shields.io/badge/PyCharm-%23000000?logo=PyCharm&logoColor=%23FFFFFF)
+	- OS: ![Static Badge](https://img.shields.io/badge/Windows%2010-%230078D6?logo=Windows%2010&logoColor=%23FFFFFF)
+	- IDE: ![Static Badge](https://img.shields.io/badge/PyCharm-%23000000?logo=PyCharm&logoColor=%23FFFFFF)
 
 ### 🏭 운영 환경
 
 - ![Static Badge](https://img.shields.io/badge/AWS-FF9900?logo=Amazon%20AWS&logoColor=%23FFFFFF) Lightsail Instance
-  - 1GB RAM, 2 vCPU, 40GB SSD
+	- 1GB RAM, 2 vCPU, 40GB SSD
 - OS: ![Static Badge](https://img.shields.io/badge/Ubuntu%2020.04-%23E95420?logo=Ubuntu&logoColor=%23FFFFFF)
 - DB: ![Static Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=PostgreSQL&logoColor=%23FFFFFF)
 
@@ -254,33 +254,33 @@ def create_app():
 ```
 
 - Flask 애플리케이션을 생성하고 초기화하는 디자인 패턴
-  - 애플리케이션 객체를 Factory Function을 사용해 동적으로 생성하고 설정
-    - 여러 개의 서로 다른 애플리케이션 인스턴스를 만들고 다른 환경(개발, 테스트 프로덕션)에서 실행할 수 있음
-    - 이를 통해 본 프로젝트에서 개발과 운영 환경의 설정을 다르게 함
+	- 애플리케이션 객체를 Factory Function을 사용해 동적으로 생성하고 설정
+		- 여러 개의 서로 다른 애플리케이션 인스턴스를 만들고 다른 환경(개발, 테스트 프로덕션)에서 실행할 수 있음
+	- 이를 통해 본 프로젝트에서 개발과 운영 환경의 설정을 다르게 함
   - 장점
-    - 확장성 향상
-    - 설정과 환경 관리의 용이
+	- 확장성 향상
+	- 설정과 환경 관리의 용이
 
 ### 6.4. Blueprint
 
 - Flask 블루프린트는 웹 애플리케이션을 여러 개의 독립적인 모듈로 나누고, 각 모듈을 개별적으로 작업하거나 재사용할 수 있게 해줌
-  - 라우팅 함수의 집합
+	- 라우팅 함수의 집합
 - 웹 애플리케이션을 개발할 때 코드를 더 구조화하고 관리하기 쉽게 만듬
 - 장점
-  1.  모듈화
-      - 각 기능을 독립적인 블루프린트로 정의하여 모듈화된 코드 작성이 가능하므로 유지 보수와 확장이 용이
-  2.  . 라우팅 분리
-      - URL 라우팅을 각 블루프린트 내에서 관리하므로 충돌을 방지하고 URL 구조를 구성하기 쉬움
-  3.  코드 재사용
-      - 비슷한 기능을 다른 애플리케이션에서 재사용할 수 있음
+	1.  모듈화
+		- 각 기능을 독립적인 블루프린트로 정의하여 모듈화된 코드 작성이 가능하므로 유지 보수와 확장이 용이
+	2. 라우팅 분리
+		- URL 라우팅을 각 블루프린트 내에서 관리하므로 충돌을 방지하고 URL 구조를 구성하기 쉬움
+	3.  코드 재사용
+		- 비슷한 기능을 다른 애플리케이션에서 재사용할 수 있음
 - 본 프로젝트에서는 애플리케이션을 목적에 따라 모듈로 분할해 라우팅 함수를 작성했음
 
 #### 6.4.1. @bp.route
 
 - 애플리케이션에서 블루프린트 객체를 사용해 URL 경로에 따라 어떤 함수가 실행될 지를 정의하는 데 사용되는 데코레이터
 - @app.route 또한 URL 경로와 함수 간의 매핑을 정의하지만, @app.route는 Flask 애플리케이션 객체('app')에 직접 라우팅 함수를 연결하는 데 사용되는 반면, @bp.route 데코레이터는 블루프린트 객체에 라우팅 함수를 연결하는 데 사용됨
-  - 블루프린트는 Flask 애플리케이션을 모듈화하고 라우팅을 구조화하는 데 사용됨
-  - 블루프린트를 사용한 라우팅 함수들을 관리하는 데 유용하며 모듈화, 확장 가능의 장점이 있음
+	- 블루프린트는 Flask 애플리케이션을 모듈화하고 라우팅을 구조화하는 데 사용됨
+	- 블루프린트를 사용한 라우팅 함수들을 관리하는 데 유용하며 모듈화, 확장 가능의 장점이 있음
 
 ### 6.5. Server-Side Rendering
 
@@ -292,18 +292,18 @@ def create_app():
 - ORM은 데이터베이스 테이블과 OOP 언어 간의 불일치를 해결하고 데이터베이스와 애플리케이션 코드 간의 상호 작용을 추상화
 - Python에서는 SQLAlchemy 사용
 - 장점
-  1.  객체지향 코드로 비즈니스 로직에 집중 가능
-  2.  재사용 및 유지보수 편리성 증가
-  3.  DBMS에 대한 종속성 줄어듬
+	1.  객체지향 코드로 비즈니스 로직에 집중 가능
+	2.  재사용 및 유지보수 편리성 증가
+	3.  DBMS에 대한 종속성 줄어듬
 - 단점
-  1.  ORM만으로는 서비스 구현이 어려움
-  2.  프로시저(작업)가 많은 시스템에서는 장점을 취하기 어려움
+	1.  ORM만으로는 서비스 구현이 어려움
+	2.  프로시저(작업)가 많은 시스템에서는 장점을 취하기 어려움
 - Workflow
-  1.  데이터 모델 정의: 데이터베이스 테이블과 매핑될 데이터 모델(클래스)을 정의
-  2.  ORM 설정: ORM을 설정하여 데이터베이스 연결 정보와 데이터 모델 간의 매핑 규칙을 설정
-  3.  CRUD 작업: 애플리케이션 코드에서 ORM을 사용하여 데이터를 CRUD
-  4.  쿼리 실행: ORM은 개발자가 작성한 ORM 코드를 기반으로 SQL 쿼리를 생성하고 데이터베이스에 전송하여 실행
-  5.  결과 처리: 데이터베이스에서 반환된 결과를 객체로 변환하거나 필요한 작업을 수행
+	1.  데이터 모델 정의: 데이터베이스 테이블과 매핑될 데이터 모델(클래스)을 정의
+	2.  ORM 설정: ORM을 설정하여 데이터베이스 연결 정보와 데이터 모델 간의 매핑 규칙을 설정
+	3.  CRUD 작업: 애플리케이션 코드에서 ORM을 사용하여 데이터를 CRUD
+	4.  쿼리 실행: ORM은 개발자가 작성한 ORM 코드를 기반으로 SQL 쿼리를 생성하고 데이터베이스에 전송하여 실행
+	5.  결과 처리: 데이터베이스에서 반환된 결과를 객체로 변환하거나 필요한 작업을 수행
 - 예시: Python code -> SQL query
 
 ```python
@@ -325,20 +325,20 @@ WHERE post_list.subject ILIKE 'search_value';
 - Python을 위한 ORM 및 SQL 툴킷 라이브러리
 - 데이터데이스와 상호작용하기 위한 도구 제공
 - 구성 요소
-  - Core: 데이터베이스와 상호작용하기 위한 기본 도구 제공
-  - ORM: 데이터베이스와 Python 클래스 사이의 매핑 제공
-  - SQLAlchemy: 데이터베이스 테이블을 파이썬 클래스로 정의
-  - Session: 세션을 통해 데이터베이스에 대한 트랜잭션을 관리
-  - Engine: 데이터베이스에 대한 모든 SQL 작업이 수행됨
-  - Query: SQL 쿼리를 생성하고 실행하는 쿼리 빌더를 제공
+	- Core: 데이터베이스와 상호작용하기 위한 기본 도구 제공
+	- ORM: 데이터베이스와 Python 클래스 사이의 매핑 제공
+	- SQLAlchemy: 데이터베이스 테이블을 파이썬 클래스로 정의
+	- Session: 세션을 통해 데이터베이스에 대한 트랜잭션을 관리
+	- Engine: 데이터베이스에 대한 모든 SQL 작업이 수행됨
+	- Query: SQL 쿼리를 생성하고 실행하는 쿼리 빌더를 제공
 - DB 관리 명령어
-  - flask db migrate: 모델을 생성하거나 변경할 때 사용
-  - flask db upgrade: 모델의 변경 내용을 실제 데이터베이스에 적용할 때 사용
+	- flask db migrate: 모델을 생성하거나 변경할 때 사용
+	- flask db upgrade: 모델의 변경 내용을 실제 데이터베이스에 적용할 때 사용
 
 #### 6.6.2. Model
 
 - Models.py 파일에 ORM을 사용해 모델을 정의함
-  - 데이터베이스 테이블과 상호작용하기 위한 클래스를 정의
+	- 데이터베이스 테이블과 상호작용하기 위한 클래스를 정의
 - 클래스의 각 속성은 매핑되는 테이블의 Column과 일치
 - 데이터 유형과 제약 조건 또한 지정
 
@@ -401,29 +401,29 @@ parsed_data = get_food()
 - Flask 애플리케이션에서 HTTP 요청과 관련된 정보를 처리하려면 'request' 객체를 사용
 - 이 객체는 현재 요청과 관련된 다양한 정보를 제공하며 HTTP 메서드, URL, 헤더, 쿼리 문자열, 폼 데이터, JSON 데이터 및 기타 요청 데이터에 접근할 수 있도록 도와줌
 - 'request' 객체를 사용해 얻을 수 있는 주요 정보
-  1.  **HTTP 메소드**: `request.method`를 통해 현재 요청의 HTTP 메소드를 얻을 수 있음
-      - 예를 들어, GET, POST, PUT, DELETE 등의 메소드가 반환됨
-  2.  **URL 정보**: `request.url`은 현재 요청의 전체 URL을 나타냄
-  3.  **헤더 정보**: `request.headers`는 HTTP 요청 헤더의 딕셔너리를 반환
-      - 예를 들어, `request.headers['User-Agent']`를 사용하여 사용자 에이전트(User-Agent) 헤더를 얻을 수 있음
-  4.  **쿼리 문자열**: `request.args`는 URL의 쿼리 문자열 파라미터를 딕셔너리로 반환
-      - 예를 들어, `/search?query=example` URL에서 `request.args['query']`는 "example" 값을 반환
-  5.  **폼 데이터**: `request.form`은 POST 요청의 폼 데이터를 딕셔너리로 반환, HTML 폼에서 제출된 데이터를 처리할 때 유용
-  6.  **JSON 데이터**: `request.get_json()`을 사용하여 JSON 요청 본문을 파싱하고 JSON 데이터를 얻을 수 있음
-  7.  **파일 업로드**: 파일 업로드가 있는 POST 요청의 경우, `request.files`를 사용하여 업로드된 파일에 접근할 수 있음
-  8.  **세션 정보**: `request.session`을 사용하여 현재 요청과 관련된 세션 데이터에 접근할 수 있음
+	1.  **HTTP 메소드**: `request.method`를 통해 현재 요청의 HTTP 메소드를 얻을 수 있음
+		- 예를 들어, GET, POST, PUT, DELETE 등의 메소드가 반환됨
+	2.  **URL 정보**: `request.url`은 현재 요청의 전체 URL을 나타냄
+	3.  **헤더 정보**: `request.headers`는 HTTP 요청 헤더의 딕셔너리를 반환
+		- 예를 들어, `request.headers['User-Agent']`를 사용하여 사용자 에이전트(User-Agent) 헤더를 얻을 수 있음
+	4.  **쿼리 문자열**: `request.args`는 URL의 쿼리 문자열 파라미터를 딕셔너리로 반환
+		- 예를 들어, `/search?query=example` URL에서 `request.args['query']`는 "example" 값을 반환
+	5.  **폼 데이터**: `request.form`은 POST 요청의 폼 데이터를 딕셔너리로 반환, HTML 폼에서 제출된 데이터를 처리할 때 유용
+	6.  **JSON 데이터**: `request.get_json()`을 사용하여 JSON 요청 본문을 파싱하고 JSON 데이터를 얻을 수 있음
+	7.  **파일 업로드**: 파일 업로드가 있는 POST 요청의 경우, `request.files`를 사용하여 업로드된 파일에 접근할 수 있음
+	8.  **세션 정보**: `request.session`을 사용하여 현재 요청과 관련된 세션 데이터에 접근할 수 있음
 
 ### 6.9. Flask Form
 
 - Flask 애플리케이션에서 웹 폼을 쉽게 처리하기 위한 확장 라이브러리
 - 웹 폼을 쉽게 생성하고, Form validation, 데이터 수집, 에러 처리 등을 할 수 있음
 - CSRF(Cross-Site Request Forgery) 방지 같은 보안 기능도 내장되어 있음
-  - CSRF 토큰 코드를 삽입해야 정상적으로 데이터 전송 가능
+	- CSRF 토큰 코드를 삽입해야 정상적으로 데이터 전송 가능
 - 사용 방법
-  1.  FlaskForm을 상속 받는 Form 클래스를 정의
-  2.  View의 라우팅 함수에서 Form 인스턴스를 생성하고 사용
-      - POST 요청일 때 검증 작업 등
-  3.  HTML 템플릿 파일에서 웹 폼을 렌더링하고 사용자에게 입력을 받음
+	1.  FlaskForm을 상속 받는 Form 클래스를 정의
+	2.  View의 라우팅 함수에서 Form 인스턴스를 생성하고 사용
+		- POST 요청일 때 검증 작업 등
+	3.  HTML 템플릿 파일에서 웹 폼을 렌더링하고 사용자에게 입력을 받음
 
 ### 6.10. 페이징 - Pagenation
 
@@ -445,26 +445,26 @@ parsed_data = get_food()
 ### 6.11. 회원가입 - WTForms
 
 - 웹에서 폼을 정의하고 검증하기 위한 라이브러리
-  - 웹 폼을 쉽게 생성하고, 사용자로부터 데이터를 수집하고 검증할 수 있음
+	- 웹 폼을 쉽게 생성하고, 사용자로부터 데이터를 수집하고 검증할 수 있음
 - 회원가입을 위해 FlaskForm을 상속 받아 UserCreateForm 생성
 - PasswordField, EmailField을 import
-  - PasswordField: 사용자의 비밀번호를 입력받을 때 이 필드를 사용하면 비밀번호 입력을 안전하게 처리하고 Validation도 할 수 있음
-    - 라우팅 함수에서 generate_password_hash 함수로 암호화
-  - EmailField: StringField와 동일하지만 템플릿 자동 변환으로 사용시 \<input type="email">로 변환됨
+	- PasswordField: 사용자의 비밀번호를 입력받을 때 이 필드를 사용하면 비밀번호 입력을 안전하게 처리하고 Validation도 할 수 있음
+		- 라우팅 함수에서 generate_password_hash 함수로 암호화
+	- EmailField: StringField와 동일하지만 템플릿 자동 변환으로 사용시 \<input type="email">로 변환됨
 
 ### 6.12. 로그인 - session, g
 
 - FlaskForm을 상속 받아 UserLoginForm 생성
 - 로그인 여부는 g 객체를 사용해 라우팅 함수에서 검증
 - 로그인 라우팅 함수에서 session, g를 import
-  - session
-    - Flask 애플리케이션에서 사용자 데이터를 저장하고 관리, 사용자별로 고유한 데이터 저장하는 객체
-    - Flask가 세션 데이터를 암호화해 보안 유지
-    - 세션을 사용하면 사용자의 로그인 상태, 장바구니 내역 등의 정보를 유지하고 상태를 추적 가능
-  - g
-    - Flask 애플리케이션 내에서 글로벌하게 사용되는 데이터를 저장하기 위한 객체
-    - 모든 요청에서 공유되는 데이터를 저장하고, 다른 함수나 뷰에서 이 데이터에 접근 가능
-    - 데이터베이스 연결, 현재 사용자 정보, 로그 기록 등과 같이 여러 곳에서 사용되는 데이터를 저장할 때 유용
+	- session
+		- Flask 애플리케이션에서 사용자 데이터를 저장하고 관리, 사용자별로 고유한 데이터 저장하는 객체
+		- Flask가 세션 데이터를 암호화해 보안 유지
+		- 세션을 사용하면 사용자의 로그인 상태, 장바구니 내역 등의 정보를 유지하고 상태를 추적 가능
+	- g
+		- Flask 애플리케이션 내에서 글로벌하게 사용되는 데이터를 저장하기 위한 객체
+		- 모든 요청에서 공유되는 데이터를 저장하고, 다른 함수나 뷰에서 이 데이터에 접근 가능
+		- 데이터베이스 연결, 현재 사용자 정보, 로그 기록 등과 같이 여러 곳에서 사용되는 데이터를 저장할 때 유용
 
 ## 7. 🚀 배포
 
@@ -547,19 +547,21 @@ sudo systemctl enable ssgrecipe.service
 
 - 웹 서버는 클라이언트로부터 HTTP 요청을 수신하고, 정적 파일(HTML, CSS, 이미지 등)을 서비스하며, 동적 컨텐츠를 생성하는 웹 애플리케이션 서버나 애플리케이션 서버에 요청을 전달하는 역할
 - 주로 정적 컨텐츠를 서비스하는 역할을 하며, 웹 서버로는 Apache, Nginx, IIS 등이 있음
-- WSGI 서버만 구동해도 애플리케이션이 작동하는 데에는 문제가 없음, 근데 왜 WAS 앞에 웹 서버를 두는가?
+- WSGI 서버만 구동해도 애플리케이션이 작동하는 데에는 문제가 없음, 근데 왜 WAS 앞에 웹 서버를 두는지?
 	- 로드 밸런싱: 여러 웹 서버 인스턴스 간에 트래픽을 분산
 	- 보안 및 인증: SSL/TLS 인증서 관리 및 보안 설정을 처리
 	- 리버스 프록시: 동적 컨텐츠를 생성하는 애플리케이션 서버로 요청을 전달
-	- 사실 위와 같은 기능도 이제 WSGI, WAS에서 지원함, 이제 웹 서버를 앞에 둬야하는 이유를 공부해봐야겠음
+	- 사실 위와 같은 기능도 이제 WSGI, WAS에서 지원하지만, 결정적으로 WAS는 잘 죽음
+		- 애플리케이션 로직이 동작하기 때문
+	- 따라서 웹 서버, WAS를 둘 다 두고 정적 리소스가 많이 사용되면 웹 서버를 증설하고, 애플리케이션 리소스가 많이 사용되면 WAS 증설
 
 ##### Nginx
 
 - 운영 서버의 웹 서버로 Nginx를 설치
 - 비동기 기반 구조라 더 적은 리소스를 사용해서 요청을 처리할 수 있음
 - Nginx의 설정을 변경
-  - 80 포트로 서비스하도록 함
-  - static 경로를 지정해 정적 리소스를 서빙할 수 있도록 함
+	- 80 포트로 서비스하도록 함
+	- static 경로를 지정해 정적 리소스를 서빙할 수 있도록 함
 
 ### Logging
 
@@ -571,13 +573,13 @@ sudo systemctl enable ssgrecipe.service
 ### Database Migration
 
 - 운영 서버에서는 SQLite가 아닌 오픈소스 RDBMS인 PostgreSQL를 사용하기로 결정
-  - 여러 가지 이유가 있는데, 대표적인 이유는
-    - SQLite는 서버를 따로 두고 통신할 수 없기 때문에 인스턴스가 있는 로컬에서 DB를 운용해야 함
-    - 아직은 데이터를 대규모로 처리할 일은 없지만 운영 서버에 배포한 만큼 그 부분을 고려하고 싶었음, SQLite는 동시성에 제한이 있어 운영 서버에는 부적합
+	- 여러 가지 이유가 있는데, 대표적인 이유는
+	    - SQLite는 서버를 따로 두고 통신할 수 없기 때문에 인스턴스가 있는 로컬에서 DB를 운용해야 함
+	    - 아직은 데이터를 대규모로 처리할 일은 없지만 운영 서버에 배포한 만큼 그 부분을 고려하고 싶었음, SQLite는 동시성에 제한이 있어 운영 서버에는 부적합
 - AWS에서 PostgreSQL RDS 데이터베이스를 생성
-- **_ORM의 마법_**으로 config 파일에서 DB 엔드포인트, user, pw, url 수정만으로 설정 완료
-  - 스키마나 쿼리, 애플리케이션 코드를 단 한 개도 변경하지 않음
-  - 감동의 눈물을 흘림
+- **_ORM의 마법_** 으로 config 파일에서 DB 엔드포인트, user, pw, url 수정만으로 설정 완료
+	- 스키마나 쿼리, 애플리케이션 코드를 단 한 개도 변경하지 않음
+	- 감동의 눈물을 흘림
 - 서버에서 다음 명령어를 입력하면 마이그레이션 완료!
 
 ```bash
