@@ -396,6 +396,12 @@ def get_food():
 parsed_data = get_food()
 ```
 
+#### 6.7.1. 레시피 가격 계산 로직
+
+- Open API에서 받아온 데이터와 이마트몰에서 조사한 데이터를 혼합해 DB에 삽입하고, 레시피 작성 요청이 들어오면 재료 테이블의 정보를 템플릿 엔진으로 넘김
+- 사용자가 입력한 재료와 수량 혹은 중량이 Flask로 넘어오면 유효성 검사 후 가격을 계산하는 함수에서 처리됨
+> **레시피 가격 = (재료 가격 \* 수량 혹은 중량 / 단위 )**
+
 ### 6.8. 'request' 객체
 
 - Flask 애플리케이션에서 HTTP 요청과 관련된 정보를 처리하려면 'request' 객체를 사용
@@ -490,12 +496,13 @@ ssh -i ~/PrivateKeys/ssgrecipe.pem ubuntu@static_ip
 
 ### 초기 서버 환경 설정
 
+- git 명령어로 clone 해온 뒤에 requirements.txt를 통해 라이브러리 설치
+	-> 개발 환경과 같은 환경으로 서버 구성
+
 ```bash
 git clone https://github.com/seungwonbased/ssg-recipe-project.git
 ```
 
-- git 명령어로 clone 해온 뒤에 requirements.txt를 통해 라이브러리 설치
-  -> 개발 환경과 같은 환경으로 서버 구성
 - 서버 환경 변수 설정
 - 데이터베이스 초기화 및 migrate, upgrade
 
@@ -527,9 +534,9 @@ git clone https://github.com/seungwonbased/ssg-recipe-project.git
 
 - Python 웹 애플리케이션과 웹 서버 간의 표준화된 인터페이스
 - WSGI는 웹 서버와 웹 애플리케이션 프레임워크 또는 애플리케이션을 분리해 개발자가 서로 다른 서버 및 애플리케이션을 조합하여 사용할 수 있도록 중간 계층 역할을 함
-- 즉, Python으로 작성된 여러 웹 애플리케이션 프레임워크와 웹 서버를 통합하는 데 사용됨
+- 즉, Python으로 작성된 여러 웹 애플리케이션 프레임워크(e.g., Flask, Django 등)와 웹 서버를 통합하는 데 사용됨
 - 구현체로는 uwsgi, Gunigcorn 등이 등장하면서 훨씬 효율적인 동적 리소스 서빙이 가능해짐
-- Flask에서 WSGI를 붙여 WAS를 운용하게 됨
+- Flask에 WSGI를 붙여 WAS를 운용하게 됨
 	- Flask는 WSGI 애플리케이션이고, WSGI 서버에서 요청을 받아 동작
 
 ##### Gunicorn
