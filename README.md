@@ -236,7 +236,7 @@
 
 ![img](https://github.com/seungwonbased/ssg-recipe-project/blob/main/assets/ERD.png)
 
-
+- <span style="color:#8A2BE2">보라색 테이블</span>은 Many-to-Many 관계를 위해 생성한 테이블
 
 ### 6.3. Application Factory Pattern
 
