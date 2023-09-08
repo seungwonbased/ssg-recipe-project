@@ -150,6 +150,7 @@
   },
   "active": "9c47c2f81bdcee04",
   "lastOpenFiles": [
+    "recipe-book/app/api/__init__.py",
     "assets/ERD.png",
     "assets/ERD.JPG",
     "recipe-book/app/api/kamis/models/daily_sales_list.py.ff325c05dfeb1c5a206288d3d10dc178.tmp",
@@ -171,7 +172,6 @@
     "assets",
     "untitled folder",
     "Untitled.md",
-    "README.md",
-    "main_page.png"
+    "README.md"
   ]
 }

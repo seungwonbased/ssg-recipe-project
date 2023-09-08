@@ -344,7 +344,57 @@ WHERE post_list.subject ILIKE 'search_value';
 
 ### 6.7. Open API
 
-- 
+- 재료 테이블의 데이터 소스를 Open API를 받아와 구성
+- 기획 상 리테일 서비스 (e.g., 신세계 이마트몰) 내 브랜드 커뮤니티를 구현하고자 했기 때문에 직접 가격 정보를 받아오는 것이 데이터의 신뢰성과 실시간성을 보장할 수 있는 방법이라고 생각
+- 그러나 SSG, Coupang, Lotte Mall 등의 Open API는 입점해있는 판매자에게만 열려있어 공공데이터 API를 받아오기로 함
+- 한국농수산식품공사의 KAMIS에서 제공하는 Open API에서 일별 품목별 소매 가격 정보를 호출
+	- 공식으로 지원하는 Client나 예시가 없어서 웹에 있는 API 호출 클라이언트를 참고해 커스텀
+- Example Code
+```python
+client = KamisOpenApi(
+    CertificationPair(
+        cert_key="cert_key", cert_id="cert_id"
+    )
+)
+
+
+# API 호출
+daily_sales_list = client.daily_sales_list()
+info = dict()
+food = Food()
+
+
+# 데이터 Parsing
+def get_food():
+    # 215개 한정
+    for i in range(215):
+        """sumary_line
+        카테고리가 축산물, 수산물일 경우와 나머지일 경우를 나눠 파싱
+        """
+        if daily_sales_list.prices[i].category_code in ("500", "600"):
+            name = daily_sales_list.prices[i].product_name
+
+            info[name] = [
+                daily_sales_list.prices[i].date_price_dict["당일"],
+                daily_sales_list.prices[i].unit,
+                daily_sales_list.prices[i].category_name,
+                daily_sales_list.prices[i].category_code,
+            ]
+        else:
+            name = daily_sales_list.prices[i].product_name.split("/")
+
+            info[name[0]] = [
+                daily_sales_list.prices[i].date_price_dict["당일"],
+                daily_sales_list.prices[i].unit,
+                daily_sales_list.prices[i].category_name,
+                daily_sales_list.prices[i].category_code,
+            ]
+
+    return info
+
+
+parsed_data = get_food()
+```
 
 ### 6.8. 'request' 객체
 
@@ -621,7 +671,7 @@ sudo systemctl restart ssgrecipe.service
 
 ### 배승원
 
-- 주로 Spring Boot로 애플리케이션을 개발하다가 Flask를 처음 사용해봤습니다. 개발을 진행하며 프레임워크가 간결하고 가벼워 본 프로젝트에 최적이라는 생각을 했습니다. JPA를 사용했던 경험을 토대로 본 프로젝트에도 ORM을 적용해보았는데, 역시나 제 스타일입니다. 개발 중에는 물론이고, 특히 초반 개발 환경에서 쓰던 Sqlite를 운영 서버에 배포할 때 PostgreSQL로 마이그레이션 했는데, 감동의 눈물을 흘렸습니다. 또한 운영 서버 구축 과정에서 평소에 WAS가 내장된 Spring Boot만 쓰다보니 Nginx 같은 웹 서버니, WSGI니  하는 문제는 전혀 체감하지 못했는데, Flask를 사용하면서 이런 서버를 애플리케이션 앞에 배치해보며 많이 배웠습니다. 짧은 기간이었지만 팀원들과 커뮤니케이션이 아주 만족스럽고, 덕분에 테크니컬한 부분에 집중할 수 있었습니다. 즐거웠습니다.
+- 주로 Spring Boot로 애플리케이션을 개발하다가 Flask를 처음 사용해봤습니다. 개발을 진행하며 프레임워크가 간결하고 가벼워 본 프로젝트에 최적이라는 생각을 했습니다. JPA를 사용했던 경험을 토대로 본 프로젝트에도 ORM을 적용해보았는데, 역시나 제 스타일입니다. 개발 중에는 물론이고, 특히 초반 개발 환경에서 쓰던 Sqlite를 운영 서버에 배포할 때 PostgreSQL로 마이그레이션 했는데, 감동의 눈물을 흘렸습니다. 또한 운영 서버 구축 과정에서 평소에 WAS가 내장된 Spring Boot만 쓰다보니 Nginx 같은 웹 서버니, WSGI니 하는 문제는 전혀 체감하지 못했는데, Flask를 사용하면서 이런 서버를 애플리케이션 앞에 배치해보며 많이 배웠습니다. 짧은 기간이었지만 팀원들과 커뮤니케이션이 아주 만족스럽고, 덕분에 테크니컬한 부분에 집중할 수 있었습니다. 즐거웠습니다.
 
 ### 정지환
 
